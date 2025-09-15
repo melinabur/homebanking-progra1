@@ -1,6 +1,6 @@
 #Menu Principal
 
-from usuarios import alta_Usuario, iniciar_sesion
+from usuarios import alta_Usuario, iniciar_sesion, menu_usuario
 
 
 def menu_inicial ():
@@ -23,6 +23,7 @@ def menu_inicial ():
 
             if usuario is not None:
                 print("\nBienvenido al sistema,", usuario["nombre"], usuario["apellido"])
+                return menu_usuario(usuario)              
             
         elif opcion == "0":
             print ("Hasta pronto.")

@@ -39,12 +39,15 @@ def alta_Usuario():
             print("La contraseña debe tener al menos 6 caracteres.")
             password = input("Cree una contraseña (mínimo 6 caracteres): ")
 
+        saldo = 0.0 #Saldo inicial 
+
         #ARMAR NUEVO USUARIO Y AGREGAR A LA LISTA
         nuevo_usuario = {
             "nombre": nombre,
             "apellido": apellido,
             "dni": dni,
             "password": password,
+            "saldo": saldo
         }
         usuarios.append(nuevo_usuario)  
         
@@ -83,6 +86,28 @@ def iniciar_sesion():
         else:
             print("Opción no válida, volviendo al menú de inicio.")
             return None
+
+#CONSULTA DE SALDO
+
+def consultar_saldo(usuario):
+    print(f"\n El saldo de {usuario['nombre']}, {usuario['apellido']} es: ${usuario['saldo']:.2f}")
+
+#MENU DEL USUARIO   
+
+def menu_usuario(usuario): 
+    while True: 
+        print("\n--- Menú de Usuario ---")
+        print("1. Consultar saldo")
+        print("2. Cerrar sesión")
+        opcion = input("Seleccione una opción: ")
+
+        if opcion == "1": 
+            consultar_saldo(usuario)
+        elif opcion == "2":
+            print("Se cerro sesión correctamente. Hasta luego. ")
+            return False
+        else: 
+            print("La opción ingresada no es válida, por favor vuelva a intentarlo.")
 
 #Validación ingreso solo caracteres, devuelve TRUE
 def validar_caracteres(texto):
