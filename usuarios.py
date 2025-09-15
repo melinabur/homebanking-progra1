@@ -57,30 +57,32 @@ def alta_Usuario():
 
 
 def iniciar_sesion():
-    dni = input("DNI: ")
-    password = input("Contraseña: ")
+    seguir = True
+    while seguir:
+        dni = input("DNI: ")
+        password = input("Contraseña: ")
 
-    for i in usuarios:
-        if i["dni"] == dni and i["password"] == password:
-            print("Ingreso exitoso. Bienvenido/a", i["nombre"],i["apellido"])
-            return i
-    print("DNI o contraseña incorrectos.")
-    print("1) Intentar de nuevo")
-    print("2) Volver al menú anterior")
-    print("0) Salir del programa")
+        for i in usuarios:
+            if i["dni"] == dni and i["password"] == password:
+                print("Ingreso exitoso. Bienvenido/a", i["nombre"],i["apellido"])
+                return i
+        print("DNI o contraseña incorrectos.")
+        print("1) Intentar de nuevo")
+        print("2) Volver al menú anterior")
+        print("0) Salir del programa")
 
-    opcion = input("Opción: ")
+        opcion = input("Opción: ")
 
-    if opcion == "1":
-        return iniciar_sesion()   # vuelve a pedir DNI y password
-    elif opcion == "2":
-        return menu_inicial()   # vuelve a menu_inicial
-    elif opcion == "0":
-        print("Hasta pronto.")
-        return None    # termina el programa
-    else:
-        print("Opción no válida, volviendo al menú de inicio.")
-        return False
+        if opcion == "1":
+            seguir = True # vuelve a pedir DNI y password
+        elif opcion == "2":
+            return None   # vuelve a menu_inicial
+        elif opcion == "0":
+            print("Hasta pronto.")
+            return "SALIR"    # termina el programa
+        else:
+            print("Opción no válida, volviendo al menú de inicio.")
+            return None
 
 #Validación ingreso solo caracteres, devuelve TRUE
 def validar_caracteres(texto):
@@ -105,4 +107,3 @@ def dni_existe(dni):
         if i["dni"] == dni:
             return True
     return False
-    

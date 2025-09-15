@@ -14,18 +14,27 @@ def menu_inicial ():
 
         if opcion == "1":
             alta_Usuario()
+
         elif opcion == "2":
             usuario = iniciar_sesion()
+            
+            if usuario == "SALIR":
+                return "SALIR"
+
+            if usuario is not None:
+                print("\nBienvenido al sistema,", usuario["nombre"], usuario["apellido"])
+            
         elif opcion == "0":
-            print("Hasta pronto.")
-            return False
+            print ("Hasta pronto.")
+            return "SALIR"
+
         else:
             print("Opción no válida. Por favor, intente nuevamente.")
 
 
 #main principal (invocamos todas las funciones)
 def main():
-    user = menu_inicial ()
+    usario = menu_inicial()
 
 if __name__ == "__main__":
     main()
