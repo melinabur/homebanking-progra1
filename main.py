@@ -2,6 +2,7 @@
 
 from usuarios import alta_Usuario, iniciar_sesion
 
+
 def menu_inicial ():
     while True:
         print("\n=== Bienvenida/o al Home Banking ===")

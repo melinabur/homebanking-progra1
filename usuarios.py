@@ -1,7 +1,5 @@
 #Usuarios
 
-from main import menu_inicial
-
 usuarios = []
 
 # Registro de usuario nuevo
