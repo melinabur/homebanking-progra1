@@ -1,60 +1,38 @@
-from usuarios import alta_Usuario, iniciar_sesion
+#Menu Principal
 
-def menu_inicial():
-    usuario_registrado = False   
+from usuarios import alta_Usuario, iniciar_sesion, menu_usuario
 
+
+def menu_inicial ():
     while True:
         print("\n=== Bienvenida/o al Home Banking ===")
-
-        if not usuario_registrado:   
-            print("1) Registrarse")
-            print("2) Iniciar sesión")
-            print("0) Cancelar")
-
-            opcion = input("Opción: ")
-
-            if opcion == "1":
-                alta_Usuario()
-                usuario_registrado = True   
-
-            elif opcion == "2":
-                usuario = iniciar_sesion()
-                if usuario == "SALIR":
-                    return "SALIR"
-                if usuario is not None:
-                    print("\nBienvenido al sistema,", usuario["nombre"], usuario["apellido"])
-
-            elif opcion == "0":
-                print("Hasta pronto.")
+        print("1) Registrarse")
+        print("2) Iniciar sesión")
+        print("0) Cancelar")
+        opcion = input("Opción: ")
+        
+        if opcion == "1":
+            alta_Usuario()
+        
+        elif opcion == "2":
+            usuario = iniciar_sesion()
+            
+            if usuario == "SALIR":
                 return "SALIR"
 
-            else:
-                print("Opción no válida. Por favor, intente nuevamente.")
+            if usuario is not None:
+                print("\nBienvenido al sistema,", usuario["nombre"], usuario["apellido"])
+                return menu_usuario(usuario)              
 
-        else:   
-            print("1) Iniciar sesión")
-            print("2) Cancelar")
+        elif opcion == "0":
+            print ("Hasta pronto.")
+            return "SALIR"
+        
+        else:
+            print("Opción no válida. Por favor, intente nuevamente.")
 
-            opcion = input("Opción: ")
-
-            if opcion == "1":
-                usuario = iniciar_sesion()
-                if usuario == "SALIR":
-                    return "SALIR"
-                if usuario is not None:
-                    print("\nBienvenido al sistema,", usuario["nombre"], usuario["apellido"])
-
-            elif opcion == "2":
-                print("Hasta pronto.")
-                return "SALIR"
-
-            else:
-                print("Opción no válida. Por favor, intente nuevamente.")
-
-
-# main principal
+#main principal (invocamos todas las funciones)
 def main():
-    menu_inicial()
-
+    usario = menu_inicial()
 if __name__ == "__main__":
     main()
