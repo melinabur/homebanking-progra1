@@ -1,3 +1,5 @@
+import re
+
 #Usuarios
 
 usuarios = []
@@ -109,18 +111,13 @@ def menu_usuario(usuario):
         else: 
             print("La opción ingresada no es válida, por favor vuelva a intentarlo.")
 
-#Validación ingreso solo caracteres, devuelve TRUE
+#Validación ingreso solo letras y espacios
 def validar_caracteres(texto):
-    if not texto: 
-        return False
-    for i in (texto):
-        if not (i.isalpha() or i.isspace()):
-            return False
-    return True
+    return re.match(r'^[A-Za-z ]+$', texto) is not None
 
-#Validación ingreso solo números, devuelve TRUE
+#Validación ingreso solo números
 def validar_numeros(texto):
-    return texto.isdigit()
+    return re.match(r'^[0-9]+$', texto) is not None
 
 #Validación dni entre 7 u 8 números
 def validar_dni (dni):
