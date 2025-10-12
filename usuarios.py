@@ -1,4 +1,4 @@
-import re
+from utils import validar_caracteres, validar_dni, validar_numeros, dni_existe
 
 #Usuarios
 
@@ -31,7 +31,7 @@ def alta_Usuario():
             print("El DNI debe tener 7 u 8 dígitos numéricos.")
             dni= input("Ingrese su DNI sin puntos: ")
         #VALIDACIÓN SI DNI YA EXISTE
-        if dni_existe(dni):
+        if dni_existe(dni, usuarios):
             print("Ya existe un usuario con ese DNI. No se puede repetir.")
             return None
 
@@ -110,22 +110,3 @@ def menu_usuario(usuario):
             return False
         else: 
             print("La opción ingresada no es válida, por favor vuelva a intentarlo.")
-
-#Validación ingreso solo letras y espacios
-def validar_caracteres(texto):
-    return re.match(r'^[A-Za-z ]+$', texto) is not None
-
-#Validación ingreso solo números
-def validar_numeros(texto):
-    return re.match(r'^[0-9]+$', texto) is not None
-
-#Validación dni entre 7 u 8 números
-def validar_dni (dni):
-    return validar_numeros(dni) and (len(dni) ==7 or len(dni)== 8)
-
-#Validacion dni existente
-def dni_existe(dni):
-    for i in usuarios:
-        if i["dni"] == dni:
-            return True
-    return False
