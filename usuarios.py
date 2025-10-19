@@ -4,6 +4,8 @@ Contiene las funciones relacionadas con la gestión de usuarios.
 
 from utils import validar_caracteres, validar_dni, validar_numeros, dni_existe
 
+from seguridad import validar_password
+
 #Usuarios
 
 usuarios = []
@@ -45,10 +47,13 @@ def alta_Usuario():
             return None
 
         #CREAR CONTRASEÑA
-        password = input("Cree una contraseña (mínimo 6 caracteres): ")
-        while len(password)< 6:
-            print("La contraseña debe tener al menos 6 caracteres.")
-            password = input("Cree una contraseña (mínimo 6 caracteres): ")
+        password = input("Cree una contraseña (mínimo 8 caracteres, con una mayúscula, una minúscula y un número): ")
+        es_valida = validar_password(password)
+        
+        while es_valida == False:
+            print("Contraseña inválida. Debe tener al menos 8 caracteres, con una mayúscula, una minúscula y un número")
+            password = input("Cree una contraseña (mínimo 8 caracteres, con una mayúscula, una minúscula y un número): ")
+            es_valida = validar_password(password)
 
         saldo = 0.0 #Saldo inicial 
 
