@@ -1,3 +1,7 @@
+"""
+Contiene las funciones relacionadas con la gestión de usuarios.
+"""
+
 from utils import validar_caracteres, validar_dni, validar_numeros, dni_existe
 
 #Usuarios
@@ -6,6 +10,11 @@ usuarios = []
 
 # Registro de usuario nuevo
 def alta_Usuario():
+    """
+    Da de alta un nuevo usuario en el sistema. Solicita nombre, apellido,
+    dni y contraseña, valida datos ingresados usando las funciones en Utils,
+    inicia el saldo en 0.
+    """
     consultaUsuario = input("¿Desea dar de alta un nuevo usuario? 1:SI 0:NO: ")
     while consultaUsuario != '1' and consultaUsuario != '0':
         print("Opción inválida. Por favor ingrese 1 para sí o 0 para no.")
@@ -62,6 +71,10 @@ def alta_Usuario():
 
 
 def iniciar_sesion():
+    """
+    Permite a un usuario autenticarse en el sistema. 
+    Solicita DNI y contraseña.
+    """
     seguir = True
     while seguir:
         dni = input("DNI: ")
@@ -89,14 +102,20 @@ def iniciar_sesion():
             print("Opción no válida, volviendo al menú de inicio.")
             return None
 
-#CONSULTA DE SALDO
 
+#CONSULTA DE SALDO
 def consultar_saldo(usuario):
+    """
+    Muestra el saldo actual del usuario autenticado.
+    """
     print(f"\n El saldo de {usuario['nombre']}, {usuario['apellido']} es: ${usuario['saldo']:.2f}")
 
 #MENU DEL USUARIO   
 
-def menu_usuario(usuario): 
+def menu_usuario(usuario):
+    """
+    Despliega el menú interno del usuario que permite consulta saldo y cerrar sesión.
+    """
     while True: 
         print("\n--- Menú de Usuario ---")
         print("1. Consultar saldo")

@@ -1,9 +1,20 @@
 #Menu Principal
 
+""" 
+Este módulo contiene el menú principal del sistema.
+
+"""
+
 from usuarios import alta_Usuario, iniciar_sesion, menu_usuario
 
 
 def menu_inicial ():
+
+    """
+    Muestra el menú principal del sistema. Permite al usuario registrarse, 
+    iniciar sesión o salir del sistema.
+
+    """
     while True:
         print("\n=== Bienvenida/o al Home Banking ===")
         print("1) Registrarse")
@@ -33,6 +44,10 @@ def menu_inicial ():
 
 #main principal (invocamos todas las funciones)
 def main():
+    """
+    Llama al menú inicial del sistema.
+    """
     usario = menu_inicial()
+
 if __name__ == "__main__":
     main()
