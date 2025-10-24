@@ -2,6 +2,8 @@
 Contiene las funciones relacionadas con la gestión de usuarios.
 """
 
+import random
+
 from utils import validar_caracteres, validar_dni, validar_numeros, dni_existe
 
 from seguridad import validar_password
@@ -55,7 +57,13 @@ def alta_Usuario():
             password = input("Cree una contraseña (mínimo 8 caracteres, con una mayúscula, una minúscula y un número): ")
             es_valida = validar_password(password)
 
-        saldo = 0.0 #Saldo inicial 
+        #Saldo inicial 
+        saldo = 0.0 
+
+        #Alias nombre + 3 numeros aleatorios
+        numero_aleatorio = random.randint(100,999)
+        alias = (nombre[:3] + str(numero_aleatorio)).lower()
+
 
         #ARMAR NUEVO USUARIO Y AGREGAR A LA LISTA
         nuevo_usuario = {
@@ -63,8 +71,10 @@ def alta_Usuario():
             "apellido": apellido,
             "dni": dni,
             "password": password,
-            "saldo": saldo
+            "saldo": saldo,
+            "alias": alias
         }
+
         usuarios.append(nuevo_usuario)  
         
         print("Usuario creado con éxito.")
@@ -124,12 +134,13 @@ def menu_usuario(usuario):
     while True: 
         print("\n--- Menú de Usuario ---")
         print("1. Consultar saldo")
-        print("2. Cerrar sesión")
+        print("2. Cambiar alias")
+        print("3. Cerrar sesión")
         opcion = input("Seleccione una opción: ")
 
         if opcion == "1": 
-            consultar_saldo(usuario)
-        elif opcion == "2":
+            consultar_saldo(usuario) 
+        elif opcion == "3":
             print("Se cerro sesión correctamente. Hasta luego. ")
             return False
         else: 
