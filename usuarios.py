@@ -2,9 +2,7 @@
 Contiene las funciones relacionadas con la gestión de usuarios.
 """
 
-import random
-
-from utils import validar_caracteres, validar_dni, validar_numeros, dni_existe
+from utils import validar_caracteres, validar_dni, validar_numeros, dni_existe, generar_alias
 
 from seguridad import validar_password
 
@@ -60,9 +58,8 @@ def alta_Usuario():
         #Saldo inicial 
         saldo = 0.0 
 
-        #Alias nombre + 3 numeros aleatorios
-        numero_aleatorio = random.randint(100,999)
-        alias = (nombre[:3] + str(numero_aleatorio)).lower()
+        # Generar alias aleatorio con validación de duplicados
+        alias = generar_alias(usuarios)
 
 
         #ARMAR NUEVO USUARIO Y AGREGAR A LA LISTA

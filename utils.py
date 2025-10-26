@@ -2,6 +2,7 @@
 Funciones auxiliares de validación para el sistema.
 """
 import re
+import random
 
 #Validación ingreso solo letras y espacios
 def validar_caracteres(texto):
@@ -33,3 +34,14 @@ def dni_existe(dni, lista_usuarios):
         if i["dni"] == dni:
             return True
     return False
+
+def generar_alias(usuarios):
+    palabras_alias = [
+        "silla", "cielo", "perro", "gato", "sol", "luna", "mar", "nube", "sopa", "rueda",
+        "pluma", "cabra", "flor", "hoja", "vino", "cuerda", "piedra", "puerta", "rayo", "fuego"
+    ]
+    alias_existentes = [u["alias"] for u in usuarios]
+    alias = ".".join(random.sample(palabras_alias, 3))
+    while alias in alias_existentes:
+        alias = ".".join(random.sample(palabras_alias, 3))
+    return alias
