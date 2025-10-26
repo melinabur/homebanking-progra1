@@ -144,7 +144,46 @@ def cambiar_alias(usuario):
 
     usuario["alias"] = nuevo_alias.lower()
     print(f"Alias actualizado correctamente. Tu nuevo alias es: {usuario['alias']}")
+  
+
+#CAMBIAR CONTRASEÑA
+def cambiar_contrasenia(usuario):
+    """
+    Permite al usuario modificar su contraseña actual.
+    La valida.
+    """
+    print("\n--- Cambio de Contraseña ---")
+    actual = input("Ingrese su contraseña actual: ")
+
+    # Verificar que la contraseña actual sea correcta
+    if actual != usuario["password"]:
+        print("Contraseña incorrecta. No se pudo realizar el cambio.")
+        return
+
+    # Pedir nueva contraseña y validarla con la función de seguridad
+    nueva = input("Ingrese la nueva contraseña (mínimo 8 caracteres, con una mayúscula, una minúscula y un número): ")
+   
+    #Validar formato y diferencia con la contraseña actual
+    es_valida = validar_password(nueva)
+    while es_valida == False or nueva == usuario["password"]:
+        if nueva == usuario["password"]:
+            print("La nueva contraseña no puede ser igual a la actual.")
+        else:
+            print("Contraseña inválida. Debe tener al menos 8 caracteres, una mayúscula, una minúscula y un número.")
+        nueva = input("Ingrese una nueva contraseña válida: ")
+        es_valida = validar_password(nueva)
     
+
+    # Confirmar nueva contraseña
+    confirmar = input("Confirme la nueva contraseña: ")
+    if confirmar != nueva:
+        print("Las contraseñas no coinciden. Intente nuevamente.")
+        return
+
+    # Actualizar contraseña
+    usuario["password"] = nueva
+    print("Contraseña actualizada correctamente.")
+
 #MENU DEL USUARIO   
 
 def menu_usuario(usuario):
@@ -155,7 +194,8 @@ def menu_usuario(usuario):
         print("\n--- Menú de Usuario ---")
         print("1. Consultar saldo")
         print("2. Cambiar alias")
-        print("3. Cerrar sesión")
+        print("3. Cambiar contraseña")
+        print("4. Cerrar sesión")
         opcion = input("Seleccione una opción: ")
 
         if opcion == "1": 
@@ -163,6 +203,8 @@ def menu_usuario(usuario):
         elif opcion=="2":
             cambiar_alias(usuario) 
         elif opcion == "3":
+            cambiar_contrasenia(usuario)
+        elif opcion == "4":
             print("Se cerro sesión correctamente. Hasta luego. ")
             return False
         else: 
