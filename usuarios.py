@@ -87,32 +87,35 @@ def iniciar_sesion():
     Permite a un usuario autenticarse en el sistema. 
     Solicita DNI y contraseña.
     """
-    seguir = True
-    while seguir:
+    bandera = True
+    while bandera:
         dni = input("DNI: ")
         password = input("Contraseña: ")
 
-        for i in usuarios:
-            if i["dni"] == dni and i["password"] == password:
-                print("Ingreso exitoso. Bienvenido/a", i["nombre"],i["apellido"])
-                return i
-        print("DNI o contraseña incorrectos.")
-        print("1) Intentar de nuevo")
-        print("2) Volver al menú anterior")
-        print("0) Salir del programa")
+        usuario_encontrado = list(filter(lambda u: u["dni"] == dni and u["password"] == password, usuarios))
 
-        opcion = input("Opción: ")
+        if len(usuario_encontrado) > 0:
+            usuario = usuario_encontrado[0]
+            print(f"Ingreso exitoso. Bienvenido/a {usuario['nombre']} {usuario['apellido']}")
+            return usuario
+        else: 
+            print("DNI o contraseña incorrectos.")
+            print("1) Intentar de nuevo")
+            print("2) Volver al menú anterior")
+            print("0) Salir del programa")
 
-        if opcion == "1":
-            seguir = True # vuelve a pedir DNI y password
-        elif opcion == "2":
-            return None   # vuelve a menu_inicial
-        elif opcion == "0":
-            print("Hasta pronto.")
-            return "SALIR"    # termina el programa
-        else:
-            print("Opción no válida, volviendo al menú de inicio.")
-            return None
+            opcion = input("Opción: ")
+
+            if opcion == "1":
+                bandera = True # vuelve a pedir DNI y password
+            elif opcion == "2":
+                return None   # vuelve a menu_inicial
+            elif opcion == "0":
+                print("Hasta pronto.")
+                return "SALIR"    # termina el programa
+            else:
+                print("Opción no válida, volviendo al menú de inicio.")
+                return None
 
 
 #CONSULTA DE SALDO
