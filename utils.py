@@ -39,15 +39,34 @@ def dni_existe(dni, lista_usuarios):
 def generar_alias(usuarios):
     """
     Selecciona tres palabras al azar de una lista predefinida 
-    y las combina con puntos. Si el alias ya existe en la lista de usuarios,
-    genera uno nuevo hasta obtener uno distinto.
+    y las combina con puntos. Utiliza validacion para asegurar que no se repita.
     """
     palabras_alias = [
         "silla", "cielo", "perro", "gato", "sol", "luna", "mar", "nube", "sopa", "rueda",
         "pluma", "cabra", "flor", "hoja", "vino", "cuerda", "piedra", "puerta", "rayo", "fuego"
     ]
-    alias_existentes = [u["alias"] for u in usuarios]
     alias = ".".join(random.sample(palabras_alias, 3))
-    while alias in alias_existentes:
+
+    while alias_existe(alias, usuarios):
         alias = ".".join(random.sample(palabras_alias, 3))
     return alias
+   
+
+def validar_alias_formato(alias):
+    """
+    Valida que el alias cumpla con el formato permitido:
+    - Solo letras, numeros y puntos
+    - Entre 6 y 20 caracteres
+    Devuelve True o False
+    """
+    return re.match(r'^[a-zA-Z0-9.]{6,20}$', alias) is not None
+
+def alias_existe(alias, usuarios):
+    """
+    Verifica si el alias ya existe en la lista de usuarios.
+    Devuelve True si esta en uso o False si esta disponible.
+    """
+    for u in usuarios:
+        if u["alias"] == alias.lower():
+            return True
+    return False

@@ -2,7 +2,7 @@
 Contiene las funciones relacionadas con la gestión de usuarios.
 """
 
-from utils import validar_caracteres, validar_dni, validar_numeros, dni_existe, generar_alias
+from utils import validar_caracteres, validar_dni, validar_numeros, dni_existe, generar_alias, validar_alias_formato, alias_existe
 
 from seguridad import validar_password
 
@@ -122,6 +122,29 @@ def consultar_saldo(usuario):
     """
     print(f"\n El saldo de {usuario['nombre']}, {usuario['apellido']} es: ${usuario['saldo']:.2f}")
 
+
+#CAMBIAR ALIAS DE USUARIO
+def cambiar_alias(usuario):
+    """
+    El usuario puede ingresar un alias personalizado que cumpla con el formato permitido.
+    """
+    print(f"\nTu alias actual es: {usuario['alias']}")
+
+    nuevo_alias = input("Ingrese su nuevo alias (solo letras, numeros y puntos, sin espacios): ")
+
+    # Validar formato
+    while validar_alias_formato(nuevo_alias) == False:
+        print("Formato inválido. El alias debe tener entre 6 y 20 caracteres, solo letras, números y puntos.")
+        nuevo_alias = input("Ingrese un nuevo alias válido: ")
+
+    # Validar que no esté repetido
+    while alias_existe(nuevo_alias, usuarios):
+        print("Ese alias ya existe, por favor elegí otro.")
+        nuevo_alias = input("Ingrese un nuevo alias diferente: ")
+
+    usuario["alias"] = nuevo_alias.lower()
+    print(f"Alias actualizado correctamente. Tu nuevo alias es: {usuario['alias']}")
+    
 #MENU DEL USUARIO   
 
 def menu_usuario(usuario):
@@ -136,7 +159,9 @@ def menu_usuario(usuario):
         opcion = input("Seleccione una opción: ")
 
         if opcion == "1": 
-            consultar_saldo(usuario) 
+            consultar_saldo(usuario)
+        elif opcion=="2":
+            cambiar_alias(usuario) 
         elif opcion == "3":
             print("Se cerro sesión correctamente. Hasta luego. ")
             return False
