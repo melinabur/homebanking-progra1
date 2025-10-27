@@ -187,6 +187,33 @@ def cambiar_contrasenia(usuario):
     usuario["password"] = nueva
     print("Contraseña actualizada correctamente.")
 
+#REALIZAMOS DEPOSITO
+
+def realizamos_deposito(usuario):
+    """
+    Permite al usuario depositar dinero en su cuenta. 
+    """
+    print ("\n --- Depósito de Dinero ---")
+    monto = (input("¿Cuánto dinero desea depositar? "))
+
+    try: 
+        importe = float(monto)
+        if importe <= 0: 
+            print ("Monto inválido. Debe ingresar un número mayor a 0. ")
+            return
+    except ValueError: 
+        print ("Error. Debe ingresar un valor númerico válido.")
+        return
+
+    usuario["saldo"] += importe
+    print (f"El depósito fue realizado con éxito. Su nuevo saldo es: ${usuario['saldo']: .2f}") 
+
+    movimiento = ("Deposito", importe)
+    if "historial" not in usuario: 
+        usuario["historial"] = []
+    usuario["historial"].append(movimiento)
+
+
 #MENU DEL USUARIO   
 
 def menu_usuario(usuario):
@@ -198,7 +225,8 @@ def menu_usuario(usuario):
         print("1. Consultar saldo")
         print("2. Cambiar alias")
         print("3. Cambiar contraseña")
-        print("4. Cerrar sesión")
+        print("4. Realizar depósito")
+        print("5. Cerrar sesión")
         opcion = input("Seleccione una opción: ")
 
         if opcion == "1": 
@@ -208,6 +236,8 @@ def menu_usuario(usuario):
         elif opcion == "3":
             cambiar_contrasenia(usuario)
         elif opcion == "4":
+            realizamos_deposito(usuario)
+        elif opcion == "5":
             print("Se cerro sesión correctamente. Hasta luego. ")
             return False
         else: 
