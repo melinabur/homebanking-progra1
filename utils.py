@@ -3,6 +3,7 @@ Funciones auxiliares de validación para el sistema.
 """
 import re
 import random
+import json
 
 #Validación ingreso solo letras y espacios
 def validar_caracteres(texto):
@@ -52,6 +53,7 @@ def generar_alias(usuarios):
     return alias
    
 
+#Validar el formato del alias
 def validar_alias_formato(alias):
     """
     Valida que el alias cumpla con el formato permitido:
@@ -61,6 +63,7 @@ def validar_alias_formato(alias):
     """
     return re.match(r'^[a-zA-Z0-9.]{6,20}$', alias) is not None
 
+#Verifica si el alias ya existe
 def alias_existe(alias, usuarios):
     """
     Verifica si el alias ya existe en la lista de usuarios.
@@ -70,3 +73,25 @@ def alias_existe(alias, usuarios):
         if u["alias"] == alias.lower():
             return True
     return False
+
+#Guarda usuarios en JSON
+def guardar_usuarios(usuarios, archivo="data/usuarios.json"):
+    """
+    Guarda la lista de usuarios en formato JSON.
+    Sobrescribe el archivo con los datos actualizados.
+    """
+    with open(archivo, "w", encoding="utf-8") as f:
+        json.dump(usuarios, f, indent=4, ensure_ascii=False)
+
+
+#Carga los usuarios desde un JSON
+def cargar_usuarios(archivo="data/usuarios.json"):
+    """
+    Carga la lista de usuarios desde un archivo JSON.
+    Si el archivo no existe o está vacío, devuelve una lista vacía.
+    """
+    try:
+        with open(archivo, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return []

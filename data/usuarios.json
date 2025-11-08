@@ -1,1 +1,10 @@
-[]
+[
+    {
+        "nombre": "melina",
+        "apellido": "burzell",
+        "dni": "44484523",
+        "password": "Melina20",
+        "saldo": 0.0,
+        "alias": "flor.rueda.silla"
+    }
+]

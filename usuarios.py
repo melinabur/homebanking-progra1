@@ -2,13 +2,12 @@
 Contiene las funciones relacionadas con la gestión de usuarios.
 """
 
-from utils import validar_caracteres, validar_dni, validar_numeros, dni_existe, generar_alias, validar_alias_formato, alias_existe
+from utils import validar_caracteres, validar_dni, validar_numeros, dni_existe, generar_alias, validar_alias_formato, alias_existe, guardar_usuarios, cargar_usuarios
 
 from seguridad import validar_password
 
-#Usuarios
-
-usuarios = []
+#Al abrir el programa lee el archivo json si existe y carga a los usuarios anteriores.
+usuarios = cargar_usuarios()
 
 # Registro de usuario nuevo
 def alta_Usuario():
@@ -75,6 +74,9 @@ def alta_Usuario():
         usuarios.append(nuevo_usuario)  
         
         print("Usuario creado con éxito.")
+
+        guardar_usuarios(usuarios) #Guardar usuario generado en .json
+
         return nuevo_usuario             
 
     else:
