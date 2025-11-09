@@ -152,6 +152,9 @@ def cambiar_alias(usuario):
 
     usuario["alias"] = nuevo_alias.lower()
     print(f"Alias actualizado correctamente. Tu nuevo alias es: {usuario['alias']}")
+
+    # Guardar el cambio en el archivo JSON
+    guardar_usuarios(usuarios)
   
 
 #CAMBIAR CONTRASEÑA
@@ -191,6 +194,9 @@ def cambiar_contrasenia(usuario):
     # Actualizar contraseña
     usuario["password"] = nueva
     print("Contraseña actualizada correctamente.")
+
+    # Guardar el cambio en el archivo JSON
+    guardar_usuarios(usuarios)
 
 #REALIZAMOS DEPOSITO
 
