@@ -36,6 +36,20 @@ def dni_existe(dni, lista_usuarios):
             return True
     return False
 
+#Generar CBU aleateorio
+
+import random
+
+def generar_cbu():
+    """
+    Genera un número CBU de 22 dígitos.
+    """
+    cbu = ""
+    for i in range(22):        
+        numero = random.randint(0, 9)
+        cbu = cbu + str(numero)
+    return cbu
+
 #Generar alias aleatorio
 def generar_alias(usuarios):
     """

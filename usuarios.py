@@ -2,7 +2,7 @@
 Contiene las funciones relacionadas con la gestión de usuarios.
 """
 
-from utils import validar_caracteres, validar_dni, validar_numeros, dni_existe, generar_alias, validar_alias_formato, alias_existe, guardar_usuarios, cargar_usuarios
+from utils import validar_caracteres, validar_dni, validar_numeros, dni_existe, generar_alias, validar_alias_formato, alias_existe, guardar_usuarios, cargar_usuarios, generar_cbu
 
 from seguridad import validar_password
 
@@ -60,6 +60,8 @@ def alta_Usuario():
         # Generar alias aleatorio con validación de duplicados
         alias = generar_alias(usuarios)
 
+        # Generar CBU
+        cbu = generar_cbu()
 
         #ARMAR NUEVO USUARIO Y AGREGAR A LA LISTA
         nuevo_usuario = {
@@ -68,7 +70,8 @@ def alta_Usuario():
             "dni": dni,
             "password": password,
             "saldo": saldo,
-            "alias": alias
+            "alias": alias,
+            "cbu": cbu
         }
 
         usuarios.append(nuevo_usuario)  
