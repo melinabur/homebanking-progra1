@@ -6,6 +6,9 @@ from utils import validar_caracteres, validar_dni, validar_numeros, dni_existe, 
 
 from seguridad import validar_password
 
+from transferencias import transferir_dinero
+
+
 #Al abrir el programa lee el archivo json si existe y carga a los usuarios anteriores.
 usuarios = cargar_usuarios()
 
@@ -250,7 +253,8 @@ def menu_usuario(usuario):
         print("2. Cambiar alias")
         print("3. Cambiar contraseña")
         print("4. Realizar depósito")
-        print("5. Cerrar sesión")
+        print("5. Transferir dinero")
+        print("6. Cerrar sesión")
         opcion = input("Seleccione una opción: ")
 
         if opcion == "1": 
@@ -262,6 +266,8 @@ def menu_usuario(usuario):
         elif opcion == "4":
             realizamos_deposito(usuario)
         elif opcion == "5":
+            transferir_dinero(usuario, usuarios)
+        elif opcion == "6":
             print("Se cerro sesión correctamente. Hasta luego. ")
             return False
         else: 

@@ -4,11 +4,17 @@
         "apellido": "burzell",
         "dni": "44484523",
         "password": "Camila20",
-        "saldo": 0.0,
+        "saldo": 4600.0,
         "alias": "melina.mp",
         "cbu": "7602840050956789066756",
         "historial_claves": [
             "Melina20"
+        ],
+        "historial": [
+            [
+                "Deposito",
+                5000.0
+            ]
         ]
     },
     {
@@ -16,7 +22,7 @@
         "apellido": "munua",
         "dni": "26504094",
         "password": "Tadeo2024",
-        "saldo": 0.0,
+        "saldo": 400.0,
         "alias": "hoja.cabra.piedra",
         "cbu": "7602840050986443266756"
     }
