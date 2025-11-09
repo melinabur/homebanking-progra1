@@ -6,7 +6,10 @@
         "password": "Camila20",
         "saldo": 0.0,
         "alias": "melina.mp",
-        "cbu": "7602840050956789066756"
+        "cbu": "7602840050956789066756",
+        "historial_claves": [
+            "Melina20"
+        ]
     },
     {
         "nombre": "tadeo",

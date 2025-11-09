@@ -176,30 +176,43 @@ def cambiar_contrasenia(usuario):
    
     #Validar formato y diferencia con la contraseña actual
     es_valida = validar_password(nueva)
-    while es_valida == False or nueva == usuario["password"]:
+    # Obtener historial de las contraseñas previas si existe
+    historial = usuario.get("historial_claves", [])
+
+    while es_valida == False or nueva == usuario["password"] or nueva in historial:
         if nueva == usuario["password"]:
             print("La nueva contraseña no puede ser igual a la actual.")
+        elif nueva in historial:
+            print("La nueva contraseña ya fue usada anteriorment. Ingrese una diferente.")    
         else:
             print("Contraseña inválida. Debe tener al menos 8 caracteres, una mayúscula, una minúscula y un número.")
         nueva = input("Ingrese una nueva contraseña válida: ")
         es_valida = validar_password(nueva)
-    
+
 
     # Confirmar nueva contraseña
     confirmar = input("Confirme la nueva contraseña: ")
     if confirmar != nueva:
         print("Las contraseñas no coinciden. Intente nuevamente.")
         return
+    
+    # Agregar la contraseña actual al historial antes de reemplazarla
+    historial.append(usuario["password"])
+    
+    # Mantener solo las últimas 7 contraseñas
+    if len(historial) > 7:
+        historial = historial[-7:]
 
-    # Actualizar contraseña
+    # Actualizar campos
+    usuario["historial_claves"] = historial
     usuario["password"] = nueva
     print("Contraseña actualizada correctamente.")
 
     # Guardar el cambio en el archivo JSON
     guardar_usuarios(usuarios)
 
-#REALIZAMOS DEPOSITO
 
+#REALIZAMOS DEPOSITO
 def realizamos_deposito(usuario):
     """
     Permite al usuario depositar dinero en su cuenta. 
