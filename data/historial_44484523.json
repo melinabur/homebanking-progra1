@@ -1,0 +1,27 @@
+[
+    {
+        "fecha": "2025-11-09 20:41:36",
+        "evento": "Alta de usuario",
+        "detalle": "Se registró un nuevo usuario en el sistema."
+    },
+    {
+        "fecha": "2025-11-09 20:41:52",
+        "evento": "Inicio de sesión",
+        "detalle": "El usuario inició sesión correctamente."
+    },
+    {
+        "fecha": "2025-11-09 20:42:42",
+        "evento": "Depósito",
+        "detalle": "Depositó $5000.00"
+    },
+    {
+        "fecha": "2025-11-09 20:42:54",
+        "evento": "Transferencia enviada",
+        "detalle": "Envió $500.00 a hoja.cabra.piedra"
+    },
+    {
+        "fecha": "2025-11-09 20:43:06",
+        "evento": "Cambio de alias",
+        "detalle": "Nuevo alias: melina.mp"
+    }
+]

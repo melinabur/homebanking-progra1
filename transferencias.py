@@ -1,4 +1,5 @@
 from utils import guardar_usuarios
+from historial import registrar_evento
 
 def transferir_dinero(usuario_origen, usuarios):
     """
@@ -80,5 +81,8 @@ def transferir_dinero(usuario_origen, usuarios):
     usuario_destino["saldo"] = usuario_destino["saldo"] + monto
 
     guardar_usuarios(usuarios)
+    registrar_evento(usuario_origen, "Transferencia enviada", f"Envió ${monto:.2f} a {usuario_destino['alias']}")
+    registrar_evento(usuario_destino, "Transferencia recibida", f"Recibió ${monto:.2f} de {usuario_origen['alias']}")
+
 
     print(f"✅ Transferencia realizada con éxito. Nuevo saldo: ${usuario_origen['saldo']:.2f}")

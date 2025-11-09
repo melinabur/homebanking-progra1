@@ -8,6 +8,8 @@ from seguridad import validar_password
 
 from transferencias import transferir_dinero
 
+from historial import registrar_evento
+
 
 #Al abrir el programa lee el archivo json si existe y carga a los usuarios anteriores.
 usuarios = cargar_usuarios()
@@ -77,7 +79,8 @@ def alta_Usuario():
             "cbu": cbu
         }
 
-        usuarios.append(nuevo_usuario)  
+        usuarios.append(nuevo_usuario) 
+        registrar_evento(nuevo_usuario, "Alta de usuario", "Se registró un nuevo usuario en el sistema.") 
         
         print("Usuario creado con éxito.")
 
@@ -105,6 +108,8 @@ def iniciar_sesion():
         if len(usuario_encontrado) > 0:
             usuario = usuario_encontrado[0]
             print(f"Ingreso exitoso. Bienvenido/a {usuario['nombre']} {usuario['apellido']}")
+            
+            registrar_evento(usuario, "Inicio de sesión", "El usuario inició sesión correctamente.")
             return usuario
         else: 
             print("DNI o contraseña incorrectos.")
@@ -123,6 +128,7 @@ def iniciar_sesion():
                 return "SALIR"    # termina el programa
             else:
                 print("Opción no válida, volviendo al menú de inicio.")
+                
                 return None
 
 
@@ -158,6 +164,7 @@ def cambiar_alias(usuario):
 
     # Guardar el cambio en el archivo JSON
     guardar_usuarios(usuarios)
+    registrar_evento(usuario, "Cambio de alias", f"Nuevo alias: {usuario['alias']}")
   
 
 #CAMBIAR CONTRASEÑA
@@ -213,6 +220,7 @@ def cambiar_contrasenia(usuario):
 
     # Guardar el cambio en el archivo JSON
     guardar_usuarios(usuarios)
+    registrar_evento(usuario, "Cambio de contraseña", "El usuario cambió su contraseña.")
 
 
 #REALIZAMOS DEPOSITO
@@ -239,6 +247,8 @@ def realizamos_deposito(usuario):
     if "historial" not in usuario: 
         usuario["historial"] = []
     usuario["historial"].append(movimiento)
+
+    registrar_evento(usuario, "Depósito", f"Depositó ${importe:.2f}")
 
 
 #MENU DEL USUARIO   
@@ -269,6 +279,7 @@ def menu_usuario(usuario):
             transferir_dinero(usuario, usuarios)
         elif opcion == "6":
             print("Se cerro sesión correctamente. Hasta luego. ")
+            registrar_evento(usuario, "Cierre de sesión", "El usuario cerró su sesión correctamente.")
             return False
         else: 
             print("La opción ingresada no es válida, por favor vuelva a intentarlo.")
