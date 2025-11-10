@@ -3,61 +3,33 @@ from historial import registrar_evento
 
 def transferir_dinero(usuario_origen, usuarios):
     """
-    Permite transferir dinero a otro usuario del sistema usando ALIAS o CBU.
-    Valida saldo, monto y existencia del destinatario.
+    Permite transferir dinero a otro usuario del sistema (en ARS o USD)
+    usando ALIAS o CBU. Valida saldo, monto, moneda y existencia del destinatario.
     """
-
     print("\n--- Transferencia de Dinero ---")
-    print("¿Cómo desea buscar al destinatario?")
-    print("1) Por alias")
-    print("2) Por CBU")
-    opcion = input("Seleccione una opción: ")
 
-    # Variables iniciales
-    encontrado = False
-    usuario_destino = {} 
+    # === SELECCIÓN DE CUENTA ORIGEN ===
+    print("Seleccione la cuenta desde la que desea transferir:")
+    print("1) Caja de Ahorro en Pesos (ARS)")
+    print("2) Caja de Ahorro en Dólares (USD)")
+    
+    opcion = input("Ingrese 1 o 2: ")
 
-    # Busqueda por alias
+    while opcion != "1" and opcion != "2":
+        print("Opción inválida. Ingrese 1 para Pesos o 2 para Dólares.")
+        opcion = input("Ingrese 1 o 2: ")
+
     if opcion == "1":
-        alias_destino = input("Ingrese el alias del destinatario: ").lower()
-
-        # Evita que el usuario se transfiera a sí mismo
-        if alias_destino == usuario_origen["alias"]:
-            print("No podés transferirte dinero a vos mismo.")
-            return
-
-        # Recorre la lista de usuarios para buscar el alias
-        for i in range(len(usuarios)):
-            if usuarios[i]["alias"] == alias_destino:
-                encontrado = True
-                usuario_destino = usuarios[i]
-
-    # Busqueda por cbu
+        cuenta_origen = usuario_origen["cuentas"][0]
+        tipo_cuenta = "Caja de Ahorro en Pesos"
     elif opcion == "2":
-        cbu_destino = input("Ingrese el CBU del destinatario: ")
+        cuenta_origen = usuario_origen["cuentas"][1]
+        tipo_cuenta = "Caja de Ahorro en Dólares"
 
-        # Evita transferencia a uno mismo
-        if cbu_destino == usuario_origen["cbu"]:
-            print("No podés transferirte dinero a vos mismo.")
-            return
-
-        # Recorre la lista de usuarios para buscar el CBU
-        for i in range(len(usuarios)):
-            if usuarios[i]["cbu"] == cbu_destino:
-                encontrado = True
-                usuario_destino = usuarios[i]
-    else:
-        print("Opción inválida.")
-        return
-
-    # Si no se encontró ningún usuario
-    if encontrado == False:
-        print("No se encontró un usuario con ese alias o CBU.")
-        return
-
-    # Ingreso de monto con validacion de errores
+    # === MONTO A TRANSFERIR ===
+    monto_texto = input(f"Ingrese el monto a transferir desde {tipo_cuenta} ({cuenta_origen['moneda']}): ")
     try:
-        monto = float(input("Ingrese el monto a transferir: "))
+        monto = float(monto_texto)
         if monto <= 0:
             print("El monto debe ser mayor a 0.")
             return
@@ -65,24 +37,70 @@ def transferir_dinero(usuario_origen, usuarios):
         print("Error: debe ingresar un número válido.")
         return
 
-    # Validar saldo
-    if usuario_origen["saldo"] < monto:
+    if cuenta_origen["saldo"] < monto:
         print("Saldo insuficiente para realizar la transferencia.")
         return
 
-    print(f"Transferir ${monto:.2f} a {usuario_destino['nombre']} ({usuario_destino['alias']})")
+    # === ELECCIÓN DEL DESTINATARIO ===
+    print("\n¿Cómo desea buscar al destinatario?")
+    print("1) Por alias")
+    print("2) Por CBU")
+    metodo = input("Seleccione una opción: ")
+
+    usuario_destino = None
+    cuenta_destino = None
+
+    if metodo == "1":
+        alias_destino = input("Ingrese el alias del destinatario: ").lower()
+        for i in range(len(usuarios)):
+            for j in range(len(usuarios[i]["cuentas"])):
+                if usuarios[i]["cuentas"][j]["alias"] == alias_destino:
+                    usuario_destino = usuarios[i]
+                    cuenta_destino = usuarios[i]["cuentas"][j]
+    elif metodo == "2":
+        cbu_destino = input("Ingrese el CBU del destinatario: ")
+        for i in range(len(usuarios)):
+            for j in range(len(usuarios[i]["cuentas"])):
+                if usuarios[i]["cuentas"][j]["cbu"] == cbu_destino:
+                    usuario_destino = usuarios[i]
+                    cuenta_destino = usuarios[i]["cuentas"][j]
+    else:
+        print("Opción inválida.")
+        return
+
+    if usuario_destino is None:
+        print("No se encontró un usuario con ese alias o CBU.")
+        return
+
+    # Evitar transferirse a sí mismo
+    if usuario_destino["dni"] == usuario_origen["dni"]:
+        print("No podés transferirte dinero a vos mismo.")
+        return
+
+    # Verificar que la moneda coincida
+    if cuenta_destino["moneda"] != cuenta_origen["moneda"]:
+        print("No se puede transferir entre cuentas de diferente moneda.")
+        return
+
+    # Confirmación
+    print(f"\nVas a transferir ${monto:.2f} {cuenta_origen['moneda']} a {usuario_destino['nombre']} {usuario_destino['apellido']}")
     confirmar = input("¿Desea continuar? (S/N): ").upper()
+
     if confirmar != "S":
         print("Operación cancelada.")
         return
 
-    # Actualizar datos
-    usuario_origen["saldo"] = usuario_origen["saldo"] - monto
-    usuario_destino["saldo"] = usuario_destino["saldo"] + monto
+    # Actualizar saldos
+    cuenta_origen["saldo"] = cuenta_origen["saldo"] - monto
+    cuenta_destino["saldo"] = cuenta_destino["saldo"] + monto
 
     guardar_usuarios(usuarios)
-    registrar_evento(usuario_origen, "Transferencia enviada", f"Envió ${monto:.2f} a {usuario_destino['alias']}")
-    registrar_evento(usuario_destino, "Transferencia recibida", f"Recibió ${monto:.2f} de {usuario_origen['alias']}")
 
+    # Registrar eventos
+    registrar_evento(usuario_origen, "Transferencia enviada",
+                     f"Envió ${monto:.2f} {cuenta_origen['moneda']} a {usuario_destino['nombre']} ({cuenta_destino['alias']})")
+    registrar_evento(usuario_destino, "Transferencia recibida",
+                     f"Recibió ${monto:.2f} {cuenta_destino['moneda']} de {usuario_origen['nombre']} ({cuenta_origen['alias']})")
 
-    print(f"✅ Transferencia realizada con éxito. Nuevo saldo: ${usuario_origen['saldo']:.2f}")
+    print(f"\n✅ Transferencia realizada con éxito.")
+    print(f"Nuevo saldo en tu cuenta ({cuenta_origen['moneda']}): ${cuenta_origen['saldo']:.2f}")

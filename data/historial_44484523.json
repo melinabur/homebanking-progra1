@@ -23,5 +23,50 @@
         "fecha": "2025-11-10 00:07:22",
         "evento": "Cierre de sesión",
         "detalle": "El usuario cerró su sesión correctamente."
+    },
+    {
+        "fecha": "2025-11-10 15:04:57",
+        "evento": "Inicio de sesión",
+        "detalle": "El usuario inició sesión correctamente."
+    },
+    {
+        "fecha": "2025-11-10 15:05:12",
+        "evento": "Depósito",
+        "detalle": "Depositó $4000.0 en ARS"
+    },
+    {
+        "fecha": "2025-11-10 15:05:25",
+        "evento": "Depósito",
+        "detalle": "Depositó $3000.0 en USD"
+    },
+    {
+        "fecha": "2025-11-10 15:05:28",
+        "evento": "Cierre de sesión",
+        "detalle": "El usuario cerró su sesión correctamente."
+    },
+    {
+        "fecha": "2025-11-10 15:06:54",
+        "evento": "Inicio de sesión",
+        "detalle": "El usuario inició sesión correctamente."
+    },
+    {
+        "fecha": "2025-11-10 15:07:34",
+        "evento": "Depósito",
+        "detalle": "Depositó $5000.0 en ARS"
+    },
+    {
+        "fecha": "2025-11-10 15:07:55",
+        "evento": "Depósito",
+        "detalle": "Depositó $5000.0 en USD"
+    },
+    {
+        "fecha": "2025-11-10 15:08:27",
+        "evento": "Transferencia enviada",
+        "detalle": "Envió $5.00 ARS a tadeo (tadeo.mp)"
+    },
+    {
+        "fecha": "2025-11-10 15:08:45",
+        "evento": "Transferencia enviada",
+        "detalle": "Envió $700.00 USD a tadeo (tadeo.usd)"
     }
 ]

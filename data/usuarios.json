@@ -8,16 +8,38 @@
             {
                 "tipo": "Caja de Ahorro en Pesos",
                 "moneda": "ARS",
-                "saldo": 0.0,
+                "saldo": 4995.0,
                 "cbu": "5227753051605212852684",
                 "alias": "rueda.silla.pluma"
             },
             {
                 "tipo": "Caja de Ahorro en Dólares",
                 "moneda": "USD",
-                "saldo": 0.0,
+                "saldo": 4300.0,
                 "cbu": "4568686025469267870142",
                 "alias": "silla.pluma.flor"
+            }
+        ]
+    },
+    {
+        "nombre": "tadeo",
+        "apellido": "munua",
+        "dni": "12345678",
+        "password": "Camila20",
+        "cuentas": [
+            {
+                "tipo": "Caja de Ahorro en Pesos",
+                "moneda": "ARS",
+                "saldo": 5.0,
+                "cbu": "4829430155040199467641",
+                "alias": "tadeo.mp"
+            },
+            {
+                "tipo": "Caja de Ahorro en Dólares",
+                "moneda": "USD",
+                "saldo": 700.0,
+                "cbu": "4106106099451059412744",
+                "alias": "tadeo.usd"
             }
         ]
     }
