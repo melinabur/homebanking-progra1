@@ -1,0 +1,8 @@
+Historial de movimientos del usuario Melina Burzell
+------------------------------------------------------------
+2025-11-09 20:41:36 | Alta de usuario → Se registró un nuevo usuario en el sistema.
+2025-11-09 20:41:52 | Inicio de sesión → El usuario inició sesión correctamente.
+2025-11-09 20:42:42 | Depósito → Depositó $5000.00
+2025-11-09 20:42:54 | Transferencia enviada → Envió $500.00 a hoja.cabra.piedra
+2025-11-09 20:43:06 | Cambio de alias → Nuevo alias: melina.mp
+2025-11-09 21:38:22 | Inicio de sesión → El usuario inició sesión correctamente.

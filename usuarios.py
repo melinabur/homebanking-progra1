@@ -10,6 +10,9 @@ from transferencias import transferir_dinero
 
 from historial import registrar_evento
 
+from historial import exportar_historial_txt
+
+
 
 #Al abrir el programa lee el archivo json si existe y carga a los usuarios anteriores.
 usuarios = cargar_usuarios()
@@ -264,7 +267,8 @@ def menu_usuario(usuario):
         print("3. Cambiar contraseña")
         print("4. Realizar depósito")
         print("5. Transferir dinero")
-        print("6. Cerrar sesión")
+        print("6. Exportar historial a TXT")
+        print("7. Cerrar sesión")
         opcion = input("Seleccione una opción: ")
 
         if opcion == "1": 
@@ -278,6 +282,8 @@ def menu_usuario(usuario):
         elif opcion == "5":
             transferir_dinero(usuario, usuarios)
         elif opcion == "6":
+            exportar_historial_txt(usuario)
+        elif opcion == "7":
             print("Se cerro sesión correctamente. Hasta luego. ")
             registrar_evento(usuario, "Cierre de sesión", "El usuario cerró su sesión correctamente.")
             return False

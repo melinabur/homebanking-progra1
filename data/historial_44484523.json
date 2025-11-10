@@ -23,5 +23,10 @@
         "fecha": "2025-11-09 20:43:06",
         "evento": "Cambio de alias",
         "detalle": "Nuevo alias: melina.mp"
+    },
+    {
+        "fecha": "2025-11-09 21:38:22",
+        "evento": "Inicio de sesión",
+        "detalle": "El usuario inició sesión correctamente."
     }
 ]
