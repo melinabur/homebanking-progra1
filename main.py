@@ -19,7 +19,7 @@ def menu_inicial ():
         print("\n=== Bienvenida/o al Home Banking ===")
         print("1) Registrarse")
         print("2) Iniciar sesión")
-        print("0) Cancelar")
+        print("0) Salir del programa")
         opcion = input("Opción: ")
         
         if opcion == "1":
@@ -29,15 +29,19 @@ def menu_inicial ():
             usuario = iniciar_sesion()
             
             if usuario == "SALIR":
-                return "SALIR"
+                return
 
             if usuario is not None:
                 print("\nBienvenido al sistema,", usuario["nombre"], usuario["apellido"])
-                return menu_usuario(usuario)              
+                
+                sesion_activa = menu_usuario(usuario)
+                if sesion_activa is False:
+                    print("\n--- Sesión cerrada correctamente. Volviendo al menú principal... ---")
+                    continue #vuelve al menu inicial        
 
         elif opcion == "0":
             print ("Hasta pronto.")
-            return "SALIR"
+            return #termina el programa
         
         else:
             print("Opción no válida. Por favor, intente nuevamente.")

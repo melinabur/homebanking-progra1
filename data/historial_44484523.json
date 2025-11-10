@@ -68,5 +68,35 @@
         "fecha": "2025-11-10 15:08:45",
         "evento": "Transferencia enviada",
         "detalle": "Envió $700.00 USD a tadeo (tadeo.usd)"
+    },
+    {
+        "fecha": "2025-11-10 15:17:19",
+        "evento": "Inicio de sesión",
+        "detalle": "El usuario inició sesión correctamente."
+    },
+    {
+        "fecha": "2025-11-10 15:17:21",
+        "evento": "Cierre de sesión",
+        "detalle": "El usuario cerró su sesión correctamente."
+    },
+    {
+        "fecha": "2025-11-10 15:18:04",
+        "evento": "Inicio de sesión",
+        "detalle": "El usuario inició sesión correctamente."
+    },
+    {
+        "fecha": "2025-11-10 15:18:11",
+        "evento": "Cierre de sesión",
+        "detalle": "El usuario cerró su sesión correctamente."
+    },
+    {
+        "fecha": "2025-11-10 15:18:20",
+        "evento": "Inicio de sesión",
+        "detalle": "El usuario inició sesión correctamente."
+    },
+    {
+        "fecha": "2025-11-10 15:18:22",
+        "evento": "Cierre de sesión",
+        "detalle": "El usuario cerró su sesión correctamente."
     }
 ]
