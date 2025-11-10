@@ -77,9 +77,21 @@ def alta_Usuario():
             "apellido": apellido,
             "dni": dni,
             "password": password,
-            "saldo": saldo,
             "alias": alias,
-            "cbu": cbu
+            "cuentas": [
+                {
+                    "tipo": "Caja de Ahorro en Pesos",
+                    "moneda": "ARS",
+                    "saldo": 0.0,
+                    "cbu": generar_cbu(usuarios)
+                },
+                {
+                    "tipo": "Caja de Ahorro en Dólares",
+                    "moneda": "USD",
+                    "saldo": 0.0,
+                    "cbu": generar_cbu(usuarios)
+                }
+            ]
         }
 
         usuarios.append(nuevo_usuario) 
@@ -135,12 +147,14 @@ def iniciar_sesion():
                 return None
 
 
-#CONSULTA DE SALDO
-def consultar_saldo(usuario):
+#CONSULTA DE SALDO DE CUENTAS
+def consultar_saldo_cuentas(usuario):
     """
-    Muestra el saldo actual del usuario autenticado.
+    Muestra los saldos de todas las cuentas del usuario (pesos y dólares).
     """
-    print(f"\n El saldo de {usuario['nombre']}, {usuario['apellido']} es: ${usuario['saldo']:.2f}")
+    print("\n--- Saldos de tus cuentas ---")
+    for cuenta in usuario["cuentas"]:
+        print(f"{cuenta['tipo']} ({cuenta['moneda']}): ${cuenta['saldo']:.2f}")
 
 
 #CAMBIAR ALIAS DE USUARIO
@@ -262,7 +276,7 @@ def menu_usuario(usuario):
     """
     while True: 
         print("\n--- Menú de Usuario ---")
-        print("1. Consultar saldo")
+        print("1. Consultar saldos de cuentas")
         print("2. Cambiar alias")
         print("3. Cambiar contraseña")
         print("4. Realizar depósito")
@@ -272,7 +286,7 @@ def menu_usuario(usuario):
         opcion = input("Seleccione una opción: ")
 
         if opcion == "1": 
-            consultar_saldo(usuario)
+            consultar_saldo_cuentas(usuario)
         elif opcion=="2":
             cambiar_alias(usuario) 
         elif opcion == "3":
