@@ -65,11 +65,6 @@ def alta_Usuario():
         #Saldo inicial 
         saldo = 0.0 
 
-        # Generar alias aleatorio con validación de duplicados
-        alias = generar_alias(usuarios)
-
-        # Generar CBU
-        cbu = generar_cbu()
 
         #ARMAR NUEVO USUARIO Y AGREGAR A LA LISTA
         nuevo_usuario = {
@@ -77,19 +72,20 @@ def alta_Usuario():
             "apellido": apellido,
             "dni": dni,
             "password": password,
-            "alias": alias,
             "cuentas": [
                 {
                     "tipo": "Caja de Ahorro en Pesos",
                     "moneda": "ARS",
                     "saldo": 0.0,
-                    "cbu": generar_cbu(usuarios)
+                    "cbu": generar_cbu(usuarios),
+                    "alias": generar_alias(usuarios)
                 },
                 {
                     "tipo": "Caja de Ahorro en Dólares",
                     "moneda": "USD",
                     "saldo": 0.0,
-                    "cbu": generar_cbu(usuarios)
+                    "cbu": generar_cbu(usuarios),
+                    "alias": generar_alias(usuarios)
                 }
             ]
         }
@@ -154,20 +150,37 @@ def consultar_saldo_cuentas(usuario):
     """
     print("\n--- Saldos de tus cuentas ---")
     for cuenta in usuario["cuentas"]:
-        print(f"{cuenta['tipo']} ({cuenta['moneda']}): ${cuenta['saldo']:.2f}")
+        print(f"{cuenta['tipo']} ({cuenta['moneda']}):")
+        print(f"   Alias: {cuenta['alias']}")
+        print(f"   CBU: {cuenta['cbu']}")
+        print(f"   Saldo: ${cuenta['saldo']:.2f}\n")
 
 
-#CAMBIAR ALIAS DE USUARIO
+
+# CAMBIAR ALIAS DE USUARIO
 def cambiar_alias(usuario):
     """
-    El usuario puede ingresar un alias personalizado que cumpla con el formato permitido.
+    Permite al usuario cambiar el alias de una de sus cuentas (Pesos o Dólares),
+    validando formato y unicidad.
     """
-    print(f"\nTu alias actual es: {usuario['alias']}")
+    print("\n--- Cambio de Alias ---")
+    print("Seleccione la cuenta cuyo alias desea cambiar:")
+    print("1) Caja de Ahorro en Pesos (ARS)")
+    print("2) Caja de Ahorro en Dólares (USD)")
 
-    nuevo_alias = input("Ingrese su nuevo alias (solo letras, numeros y puntos, sin espacios): ")
+    opcion = input("Ingrese 1 o 2: ")
+
+    while opcion not in ["1", "2"]:
+        opcion = input("Opción inválida. Ingrese 1 para Pesos o 2 para Dólares: ")
+
+    # Seleccionar la cuenta
+    cuenta = usuario["cuentas"][0]  if opcion == "1" else usuario["cuentas"][1]
+
+    print(f"\nTu alias actual es: {cuenta['alias']}")
+    nuevo_alias = input("Ingrese su nuevo alias (solo letras, números y puntos, sin espacios): ")
 
     # Validar formato
-    while validar_alias_formato(nuevo_alias) == False:
+    while not validar_alias_formato(nuevo_alias):
         print("Formato inválido. El alias debe tener entre 6 y 20 caracteres, solo letras, números y puntos.")
         nuevo_alias = input("Ingrese un nuevo alias válido: ")
 
@@ -176,13 +189,14 @@ def cambiar_alias(usuario):
         print("Ese alias ya existe, por favor elegí otro.")
         nuevo_alias = input("Ingrese un nuevo alias diferente: ")
 
-    usuario["alias"] = nuevo_alias.lower()
-    print(f"Alias actualizado correctamente. Tu nuevo alias es: {usuario['alias']}")
+    # Actualizar alias
+    cuenta["alias"] = nuevo_alias.lower()
+    print(f"Alias actualizado correctamente. Tu nuevo alias para la cuenta en {cuenta['moneda']} es: {cuenta['alias']}")
 
-    # Guardar el cambio en el archivo JSON
+    # Guardar cambios y registrar el evento
     guardar_usuarios(usuarios)
-    registrar_evento(usuario, "Cambio de alias", f"Nuevo alias: {usuario['alias']}")
-  
+    registrar_evento(usuario, "Cambio de alias", f"Nuevo alias en {cuenta['moneda']}: {cuenta['alias']}")
+
 
 #CAMBIAR CONTRASEÑA
 def cambiar_contrasenia(usuario):
@@ -243,29 +257,46 @@ def cambiar_contrasenia(usuario):
 #REALIZAMOS DEPOSITO
 def realizamos_deposito(usuario):
     """
-    Permite al usuario depositar dinero en su cuenta. 
+    Permite al usuario depositar dinero en una de sus cuentas (en pesos o en dólares).
     """
-    print ("\n --- Depósito de Dinero ---")
-    monto = (input("¿Cuánto dinero desea depositar? "))
+    print("\n --- Depósito de Dinero ---")
 
-    try: 
+    # Mostrar las dos cuentas directamente
+    print("Seleccione la cuenta donde desea realizar el depósito:")
+    print("1) Caja de Ahorro en Pesos (ARS)" )
+    print("2) Caja de Ahorro en Dólares (USD) ")
+
+    opcion = input("Ingrese 1 o 2: ")
+
+    # Validar opción
+    while opcion not in ["1", "2"]:
+        opcion = input("Opción inválida. Ingrese 1 para Pesos o 2 para Dólares: ")
+
+    # Elegir la cuenta según la opción
+    if opcion == "1":
+        cuenta = usuario["cuentas"][0]
+    else:
+        cuenta = usuario["cuentas"][1]
+
+    # Ingreso del monto
+    monto = input("¿Cuánto dinero desea depositar? ")
+
+    try:
         importe = float(monto)
-        if importe <= 0: 
-            print ("Monto inválido. Debe ingresar un número mayor a 0. ")
+        if importe <= 0:
+            print("Monto inválido. Debe ingresar un número mayor a 0.")
             return
-    except ValueError: 
-        print ("Error. Debe ingresar un valor númerico válido.")
+    except ValueError:
+        print("Error. Debe ingresar un valor numérico válido.")
         return
 
-    usuario["saldo"] += importe
-    print (f"El depósito fue realizado con éxito. Su nuevo saldo es: ${usuario['saldo']: .2f}") 
+    # Actualizar saldo     
+    cuenta["saldo"] = cuenta["saldo"] + importe
+    
+    print("El depósito fue realizado con éxito en " + cuenta["tipo"] + " (" + cuenta["moneda"] + ").")
+    print("Su nuevo saldo es: $" + str(round(cuenta["saldo"], 2)))
 
-    movimiento = ("Deposito", importe)
-    if "historial" not in usuario: 
-        usuario["historial"] = []
-    usuario["historial"].append(movimiento)
-
-    registrar_evento(usuario, "Depósito", f"Depositó ${importe:.2f}")
+    registrar_evento(usuario, "Depósito", "Depositó $" + str(round(importe, 2)) + " en " + cuenta["moneda"])
 
 
 #MENU DEL USUARIO   

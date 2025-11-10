@@ -1,26 +1,24 @@
 [
     {
-        "nombre": "tadeo",
-        "apellido": "munua",
-        "dni": "26504094",
-        "password": "Tadeo2024",
-        "saldo": 900.0,
-        "alias": "hoja.cabra.piedra",
-        "cbu": "7602840050986443266756"
-    },
-    {
-        "nombre": "Melina",
-        "apellido": "Burzell",
+        "nombre": "melina",
+        "apellido": "burzell",
         "dni": "44484523",
         "password": "Melina20",
-        "saldo": 4500.0,
-        "alias": "melina.mp",
-        "cbu": "3047945249453123882224",
-        "historial": [
-            [
-                "Deposito",
-                5000.0
-            ]
+        "cuentas": [
+            {
+                "tipo": "Caja de Ahorro en Pesos",
+                "moneda": "ARS",
+                "saldo": 0.0,
+                "cbu": "5227753051605212852684",
+                "alias": "rueda.silla.pluma"
+            },
+            {
+                "tipo": "Caja de Ahorro en Dólares",
+                "moneda": "USD",
+                "saldo": 0.0,
+                "cbu": "4568686025469267870142",
+                "alias": "silla.pluma.flor"
+            }
         ]
     }
 ]

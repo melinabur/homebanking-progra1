@@ -92,14 +92,16 @@ def validar_alias_formato(alias):
     return re.match(r'^[a-zA-Z0-9.]{6,20}$', alias) is not None
 
 #Verifica si el alias ya existe
-def alias_existe(alias, usuarios):
+def alias_existe(alias, lista_usuarios):
     """
     Verifica si el alias ya existe en la lista de usuarios.
     Devuelve True si esta en uso o False si esta disponible.
     """
-    for u in usuarios:
-        if u["alias"] == alias.lower():
-            return True
+    for u in lista_usuarios:
+        if "cuentas" in u:
+            for cuenta in u["cuentas"]:
+                if cuenta["alias"] == alias:
+                    return True
     return False
 
 #Guarda usuarios en JSON

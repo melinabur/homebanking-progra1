@@ -1,32 +1,27 @@
 [
     {
-        "fecha": "2025-11-09 20:41:36",
+        "fecha": "2025-11-10 00:06:27",
         "evento": "Alta de usuario",
         "detalle": "Se registró un nuevo usuario en el sistema."
     },
     {
-        "fecha": "2025-11-09 20:41:52",
+        "fecha": "2025-11-10 00:06:37",
         "evento": "Inicio de sesión",
         "detalle": "El usuario inició sesión correctamente."
     },
     {
-        "fecha": "2025-11-09 20:42:42",
+        "fecha": "2025-11-10 00:07:02",
         "evento": "Depósito",
-        "detalle": "Depositó $5000.00"
+        "detalle": "Depositó $500.0 en ARS"
     },
     {
-        "fecha": "2025-11-09 20:42:54",
-        "evento": "Transferencia enviada",
-        "detalle": "Envió $500.00 a hoja.cabra.piedra"
+        "fecha": "2025-11-10 00:07:16",
+        "evento": "Depósito",
+        "detalle": "Depositó $300.0 en USD"
     },
     {
-        "fecha": "2025-11-09 20:43:06",
-        "evento": "Cambio de alias",
-        "detalle": "Nuevo alias: melina.mp"
-    },
-    {
-        "fecha": "2025-11-09 21:38:22",
-        "evento": "Inicio de sesión",
-        "detalle": "El usuario inició sesión correctamente."
+        "fecha": "2025-11-10 00:07:22",
+        "evento": "Cierre de sesión",
+        "detalle": "El usuario cerró su sesión correctamente."
     }
 ]

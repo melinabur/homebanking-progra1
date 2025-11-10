@@ -33,9 +33,6 @@ def menu_inicial ():
 
             if usuario is not None:
                 print("\nBienvenido al sistema,", usuario["nombre"], usuario["apellido"])
-                print(f"Tu alias es: {usuario['alias']}")
-                print(f"Tu CBU es: {usuario["cbu"]}")
-                print(f"Tu saldo actual es: ${usuario['saldo']:.2f}")
                 return menu_usuario(usuario)              
 
         elif opcion == "0":
@@ -50,7 +47,7 @@ def main():
     """
     Llama al menú inicial del sistema.
     """
-    usario = menu_inicial()
+    usuario = menu_inicial()
 
 if __name__ == "__main__":
     main()
