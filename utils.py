@@ -30,11 +30,10 @@ def validar_dni (dni):
 def dni_existe(dni, lista_usuarios):
     """
     Comprueba si el DNI ya está registrado en la lista de usuarios.
+    Usa una lista por comprension para obtener todos los DNI.
     """
-    for i in lista_usuarios:
-        if i["dni"] == dni:
-            return True
-    return False
+    dnis = [u["dni"] for u in lista_usuarios]
+    return dni in dnis
 
 #Generar CBU aleateorio
 def generar_cbu(usuarios):
