@@ -98,5 +98,15 @@
         "fecha": "2025-11-10 15:18:22",
         "evento": "Cierre de sesión",
         "detalle": "El usuario cerró su sesión correctamente."
+    },
+    {
+        "fecha": "2025-11-13 14:59:24",
+        "evento": "Inicio de sesión",
+        "detalle": "El usuario inició sesión correctamente."
+    },
+    {
+        "fecha": "2025-11-13 14:59:32",
+        "evento": "Extracción",
+        "detalle": "Extrajo $400.0 de ARS"
     }
 ]

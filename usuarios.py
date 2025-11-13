@@ -298,6 +298,61 @@ def realizamos_deposito(usuario):
 
     registrar_evento(usuario, "Depósito", "Depositó $" + str(round(importe, 2)) + " en " + cuenta["moneda"])
 
+def realizar_extraccion(usuario):
+    """
+    Permite al usuario extraer dinero de una de sus cuentas (en pesos o en dólares).
+    """
+    print("\n --- Extracción de Dinero ---")
+
+    # Seleccionar cuenta
+    print("Seleccione la cuenta desde donde desea extraer dinero:")
+    print("1) Caja de Ahorro en Pesos (ARS)")
+    print("2) Caja de Ahorro en Dólares (USD)")
+    opcion = input("Ingrese 1 o 2: ")
+
+    # Validar opción
+    while opcion not in ["1", "2"]:
+        opcion = input("Opción inválida. Ingrese 1 para Pesos o 2 para Dólares: ")
+
+    # Elegir la cuenta según la opción
+    if opcion == "1":
+        cuenta = usuario["cuentas"][0]
+    else:
+        cuenta = usuario["cuentas"][1]
+
+    # Ingreso del monto
+    monto = input("¿Cuánto dinero desea extraer? ")
+
+    try:
+        importe = float(monto)
+        if importe <= 0:
+            print("Monto inválido. Debe ingresar un número mayor a 0.")
+            return
+    except ValueError:
+        print("Error. Debe ingresar un valor numérico válido.")
+        return
+
+    # Validar saldo suficiente
+    if importe > cuenta["saldo"]:
+        print("Saldo insuficiente para realizar la extracción.")
+        return
+
+    # Actualizar saldo
+    cuenta["saldo"] = cuenta["saldo"] - importe
+
+    print("La extracción fue realizada con éxito en " + cuenta["tipo"] + " (" + cuenta["moneda"] + ").")
+    print("Su nuevo saldo es: $" + str(round(cuenta["saldo"], 2)))
+
+    # Registrar evento en historial
+    registrar_evento(
+        usuario,
+        "Extracción",
+        "Extrajo $" + str(round(importe, 2)) + " de " + cuenta["moneda"]
+    )
+
+    # Guardar cambios en usuarios.json
+    guardar_usuarios(usuarios)
+
 
 #MENU DEL USUARIO   
 
@@ -311,9 +366,10 @@ def menu_usuario(usuario):
         print("2. Cambiar alias")
         print("3. Cambiar contraseña")
         print("4. Realizar depósito")
-        print("5. Transferir dinero")
-        print("6. Exportar historial a TXT")
-        print("7. Cerrar sesión")
+        print("5. Realizar extracción")
+        print("6. Transferir dinero")
+        print("7. Exportar historial a TXT")
+        print("8. Cerrar sesión")
         opcion = input("Seleccione una opción: ")
 
         if opcion == "1": 
@@ -325,10 +381,12 @@ def menu_usuario(usuario):
         elif opcion == "4":
             realizamos_deposito(usuario)
         elif opcion == "5":
-            transferir_dinero(usuario, usuarios)
+            realizar_extraccion(usuario)
         elif opcion == "6":
-            exportar_historial_txt(usuario)
+            transferir_dinero(usuario, usuarios)
         elif opcion == "7":
+            exportar_historial_txt(usuario)
+        elif opcion == "8":
             print("Se cerro sesión correctamente. Hasta luego. ")
             registrar_evento(usuario, "Cierre de sesión", "El usuario cerró su sesión correctamente.")
             return False
