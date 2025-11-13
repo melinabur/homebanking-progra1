@@ -354,6 +354,27 @@ def realizar_extraccion(usuario):
     guardar_usuarios(usuarios)
 
 
+def ver_datos(usuario):
+    """
+    Muestra los datos personales y bancarios del usuario:
+    nombre, DNI, y los alias/CBU de cada cuenta.
+    """
+    print("\n--- Mis datos ---")
+    print(f"Nombre completo: {usuario['nombre']} {usuario['apellido']}")
+    print(f"DNI: {usuario['dni']}\n")
+
+    print("Cuentas asociadas:")
+    for cuenta in usuario["cuentas"]:
+        print(f"- {cuenta['tipo']} ({cuenta['moneda']})")
+        print(f"  Alias: {cuenta['alias']}")
+        print(f"  CBU:   {cuenta['cbu']}")
+        print(f"  Saldo: ${cuenta['saldo']:.2f}\n")
+
+    # Opcional: registrar en historial que consultó sus datos
+    registrar_evento(usuario, "Consulta de datos", "Consultó sus datos personales y bancarios.")
+
+
+
 #MENU DEL USUARIO   
 
 def menu_usuario(usuario):
@@ -362,31 +383,34 @@ def menu_usuario(usuario):
     """
     while True: 
         print("\n--- Menú de Usuario ---")
-        print("1. Consultar saldos de cuentas")
-        print("2. Cambiar alias")
-        print("3. Cambiar contraseña")
-        print("4. Realizar depósito")
-        print("5. Realizar extracción")
-        print("6. Transferir dinero")
-        print("7. Exportar historial a TXT")
-        print("8. Cerrar sesión")
+        print("1. Consultar mis datos")
+        print("2. Consultar saldos de cuentas")
+        print("3. Cambiar alias")
+        print("4. Cambiar contraseña")
+        print("5. Realizar depósito")
+        print("6. Realizar extracción")
+        print("7. Transferir dinero")
+        print("8. Exportar historial a TXT")
+        print("9. Cerrar sesión")
         opcion = input("Seleccione una opción: ")
 
         if opcion == "1": 
+            ver_datos(usuario)
+        elif opcion == "2": 
             consultar_saldo_cuentas(usuario)
-        elif opcion=="2":
+        elif opcion=="3":
             cambiar_alias(usuario) 
-        elif opcion == "3":
-            cambiar_contrasenia(usuario)
         elif opcion == "4":
-            realizamos_deposito(usuario)
+            cambiar_contrasenia(usuario)
         elif opcion == "5":
-            realizar_extraccion(usuario)
+            realizamos_deposito(usuario)
         elif opcion == "6":
-            transferir_dinero(usuario, usuarios)
+            realizar_extraccion(usuario)
         elif opcion == "7":
-            exportar_historial_txt(usuario)
+            transferir_dinero(usuario, usuarios)
         elif opcion == "8":
+            exportar_historial_txt(usuario)
+        elif opcion == "9":
             print("Se cerro sesión correctamente. Hasta luego. ")
             registrar_evento(usuario, "Cierre de sesión", "El usuario cerró su sesión correctamente.")
             return False
