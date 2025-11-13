@@ -41,11 +41,12 @@ def generar_cbu(usuarios):
     Genera un CBU aleatorio de 22 dígitos numéricos y verifica que no esté repetido.
     """
     # Crear lista de todos los CBU existentes
-    cbu_existentes = []
-    for u in usuarios:
-        if "cuentas" in u:
-            for cuenta in u["cuentas"]:
-                cbu_existentes.append(cuenta["cbu"])
+    cbu_existentes = [
+        cuenta["cbu"]
+        for u in usuarios
+        if "cuentas" in u
+        for cuenta in u["cuentas"]
+    ]
 
     # Generar un nuevo CBU de 22 dígitos
     nuevo_cbu = ""
