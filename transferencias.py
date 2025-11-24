@@ -82,6 +82,15 @@ def transferir_dinero(usuario_origen, usuarios):
         print("No se puede transferir entre cuentas de diferente moneda.")
         return
 
+    # Pedir PIN de seguridad
+    pin_ingresado = input("Ingrese su PIN de 4 dígitos para confirmar la transferencia: ")
+    if pin_ingresado != usuario_origen["pin"]:
+        print("PIN incorrecto. No se realizó la transferencia.")
+        registrar_evento(usuario_origen, "PIN incorrecto",
+                         "Intento de transferencia cancelado por PIN inválido.")
+        return
+
+
     # Confirmación
     print(f"\nVas a transferir ${monto:.2f} {cuenta_origen['moneda']} a {usuario_destino['nombre']} {usuario_destino['apellido']}")
     confirmar = input("¿Desea continuar? (S/N): ").upper()

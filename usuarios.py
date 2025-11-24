@@ -62,6 +62,14 @@ def alta_Usuario():
             password = input("Cree una contraseña (mínimo 8 caracteres, con una mayúscula, una minúscula y un número): ")
             es_valida = validar_password(password)
 
+        
+        # CREAR PIN DE TRANSFERENCIAS
+        pin = input("Cree un PIN de 4 dígitos para autorizar transferencias: ")
+        while not (validar_numeros(pin) and len(pin) == 4):
+            print("El PIN debe tener exactamente 4 dígitos numéricos.")
+            pin = input("Cree un PIN de 4 dígitos: ")
+   
+
         #Saldo inicial 
         saldo = 0.0 
 
@@ -72,6 +80,7 @@ def alta_Usuario():
             "apellido": apellido,
             "dni": dni,
             "password": password,
+            "pin": pin,
             "cuentas": [
                 {
                     "tipo": "Caja de Ahorro en Pesos",

@@ -33,5 +33,10 @@
         "fecha": "2025-11-10 15:08:45",
         "evento": "Transferencia recibida",
         "detalle": "Recibió $700.00 USD de melina (silla.pluma.flor)"
+    },
+    {
+        "fecha": "2025-11-24 20:42:36",
+        "evento": "Transferencia recibida",
+        "detalle": "Recibió $500.00 ARS de melina (puerta.flor.rueda)"
     }
 ]
