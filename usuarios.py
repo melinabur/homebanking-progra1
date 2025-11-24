@@ -81,6 +81,8 @@ def alta_Usuario():
             "dni": dni,
             "password": password,
             "pin": pin,
+            "intentos_faliidos": 0,
+            "bloqueado": False,
             "cuentas": [
                 {
                     "tipo": "Caja de Ahorro en Pesos",
@@ -123,16 +125,52 @@ def iniciar_sesion():
         dni = input("DNI: ")
         password = input("Contraseña: ")
 
-        usuario_encontrado = list(filter(lambda u: u["dni"] == dni and u["password"] == password, usuarios))
+        usuario_encontrado = list(filter(lambda u: u["dni"] == dni, usuarios))
 
+        
         if len(usuario_encontrado) > 0:
             usuario = usuario_encontrado[0]
-            print(f"Ingreso exitoso. Bienvenido/a {usuario['nombre']} {usuario['apellido']}")
-            
-            registrar_evento(usuario, "Inicio de sesión", "El usuario inició sesión correctamente.")
-            return usuario
+
+            # Asegurar que existan los campos de seguridad
+            if "intentos_fallidos" not in usuario:
+                usuario["intentos_fallidos"] = 0
+            if "bloqueado" not in usuario:
+                usuario["bloqueado"] = False
+
+            # Si ya está bloqueado, no dejamos entrar
+            if usuario["bloqueado"]:
+                print("Tu usuario está BLOQUEADO por intentos fallidos. Contactá al banco.")
+                return None
+
+            # Validar contraseña
+            if password == usuario["password"]:
+                # Login correcto: resetear intentos
+                usuario["intentos_fallidos"] = 0
+                guardar_usuarios(usuarios)
+
+                print(f"Ingreso exitoso. Bienvenido/a {usuario['nombre']} {usuario['apellido']}")
+                registrar_evento(usuario, "Inicio de sesión", "El usuario inició sesión correctamente.")
+                return usuario
+            else:
+                # Contraseña incorrecta: sumar intento
+                usuario["intentos_fallidos"] = usuario["intentos_fallidos"] + 1
+
+                if usuario["intentos_fallidos"] >= 3:
+                    usuario["bloqueado"] = True
+                    guardar_usuarios(usuarios)
+                    registrar_evento(
+                        usuario,
+                        "Usuario bloqueado",
+                        "Se superó el límite de intentos de inicio de sesión."
+                    )
+                    print("Contraseña incorrecta. Tu usuario fue BLOQUEADO por intentos fallidos.")
+                    return None
+                else:
+                    intentos_restantes = 3 - usuario["intentos_fallidos"]
+                    guardar_usuarios(usuarios)
+                    print(f"Contraseña incorrecta. Intentos restantes: {intentos_restantes}")
         else: 
-            print("DNI o contraseña incorrectos.")
+            print("No existe un usuario con ese DNI.")
             print("1) Intentar de nuevo")
             print("2) Volver al menú anterior")
             print("0) Salir del programa")

@@ -1,69 +1,28 @@
 [
     {
-        "nombre": "melina",
-        "apellido": "burzell",
+        "nombre": "Melina",
+        "apellido": "Burzell",
         "dni": "44484523",
         "password": "Melina20",
-        "cuentas": [
-            {
-                "tipo": "Caja de Ahorro en Pesos",
-                "moneda": "ARS",
-                "saldo": 4595.0,
-                "cbu": "5227753051605212852684",
-                "alias": "rueda.silla.pluma"
-            },
-            {
-                "tipo": "Caja de Ahorro en Dólares",
-                "moneda": "USD",
-                "saldo": 4300.0,
-                "cbu": "4568686025469267870142",
-                "alias": "silla.pluma.flor"
-            }
-        ]
-    },
-    {
-        "nombre": "tadeo",
-        "apellido": "munua",
-        "dni": "12345678",
-        "password": "Camila20",
-        "cuentas": [
-            {
-                "tipo": "Caja de Ahorro en Pesos",
-                "moneda": "ARS",
-                "saldo": 505.0,
-                "cbu": "4829430155040199467641",
-                "alias": "tadeo.mp"
-            },
-            {
-                "tipo": "Caja de Ahorro en Dólares",
-                "moneda": "USD",
-                "saldo": 700.0,
-                "cbu": "4106106099451059412744",
-                "alias": "tadeo.usd"
-            }
-        ]
-    },
-    {
-        "nombre": "melina",
-        "apellido": "burzell",
-        "dni": "1234567",
-        "password": "Melina20",
         "pin": "3671",
+        "intentos_faliidos": 0,
+        "bloqueado": true,
         "cuentas": [
             {
                 "tipo": "Caja de Ahorro en Pesos",
                 "moneda": "ARS",
-                "saldo": 4500.0,
-                "cbu": "6116389379568344381578",
-                "alias": "puerta.flor.rueda"
+                "saldo": 0.0,
+                "cbu": "5186056125811022849747",
+                "alias": "puerta.mar.cielo"
             },
             {
                 "tipo": "Caja de Ahorro en Dólares",
                 "moneda": "USD",
                 "saldo": 0.0,
-                "cbu": "3859372729738959289398",
-                "alias": "flor.cabra.fuego"
+                "cbu": "4633803506473890669453",
+                "alias": "luna.rueda.piedra"
             }
-        ]
+        ],
+        "intentos_fallidos": 3
     }
 ]
