@@ -400,6 +400,100 @@ def realizar_extraccion(usuario):
     # Guardar cambios en usuarios.json
     guardar_usuarios(usuarios)
 
+def realizar_plazoFijo(usuario):
+    """
+    Permite al usuario realizar una inversión, como el plazo fijo, en pesos o dólares.
+    """
+
+    print("\n--- Plazo Fijo ---")
+    print("Seleccione la cuenta desde donde desea realizar el plazo fijo:")
+    print("1) Caja de Ahorro en Pesos (ARS)")
+    print("2) Caja de Ahorro en Dólares (USD)")
+
+    opcion = input("Ingrese la opción 1 o 2: ")
+
+    while opcion not in ["1", "2"]: 
+        opcion = input("Opcion inválida. Ingrese 1 para CA en Pesos o 2 para CA en Dólares: ")
+
+    cuenta = usuario["cuentas"][0] if opcion == "1" else usuario["cuentas"][1]
+
+    #Asignamos TNA para calcular el interes 
+    tna = 0.37 if cuenta["moneda"] == "ARS" else 0.01
+
+    #Consultamos cual es el monto a invertir 
+    monto = input("Ingrese el monto que desea invertir: ")
+
+    try:
+        monto_invertido = float(monto)
+        if monto_invertido <= 0:
+            print("El monto ingresado debe ser mayor a cero.")
+            return
+    except ValueError:
+        print("Por favor ingrese un monto válido.")
+        return
+    
+    if monto_invertido > cuenta["saldo"]:
+        print("El saldo que usted ingreso es insuficiente para realizar la operación.")
+        return
+    
+    #Consultamos al usuario por cuantos días desea realizar la inversión 
+    dias = input("Ingrese la cantidad de días que desea invertir (mayor a 30): ")
+
+    try: 
+        dias = int(dias)
+        if dias < 30: 
+            print("Error. El plazo fijo debe ser de al menos 30 días. ")
+            return 
+    except ValueError: 
+        print("Error. Usted debe ingresar un numero entero para los días. ")
+        return
+    
+    #Calculamos el interés
+    interes = monto_invertido * (dias/365) * tna
+    monto_final = monto_invertido + interes
+
+    print("\n--- Resumen del Plazo Fijo ---")
+    print(f"Monto invertido: ${monto_invertido:.2f}")
+    print(f"Días: {dias}")
+    print(f"TNA aplicado: {tna*100:.2f}%")
+    print(f"Monto que recibirá al vencimiento: ${monto_final:.2f}")
+
+    #Renovación automática 
+    print("\n ¿Desea realizar la renovación automática del plazo fijo una vez vencido el plazo de días?")
+    print("1) Sí")
+    print("2) No")
+
+    opcion_renovar = input("¿Qué opción desea ejecutar? : ")
+    renovar = opcion_renovar == "1"
+
+    if renovar: 
+        print("El plazo fijo se renovará automáticamente: ")
+    else: 
+        print("El plazo fijo no se renovará. ")
+
+    #Descontamos saldo 
+    cuenta["saldo"] -= monto_invertido
+
+    #Registramos evento y guardamos cambios
+    if "plazos_fijos" not in usuario:
+        usuario["plazos_fijos"] = []
+
+    plazo = {
+        "moneda": cuenta["moneda"],
+        "monto": monto_invertido,
+        "dias": dias,
+        "tna": tna,
+        "monto_final": round(monto_final, 2),
+        "renovacion_auto": renovar
+    }
+
+    usuario["plazos_fijos"].append(plazo)
+
+    guardar_usuarios(usuarios)
+
+    registrar_evento(usuario, "Plazo fijo", f"Plazo fijo en {cuenta['moneda']} por ${monto_invertido}")
+
+    print("\n Su plazo fijo se creo correctamente. ")
 
 def ver_datos(usuario):
     """
@@ -437,8 +531,9 @@ def menu_usuario(usuario):
         print("5. Realizar depósito")
         print("6. Realizar extracción")
         print("7. Transferir dinero")
-        print("8. Exportar historial a TXT")
-        print("9. Cerrar sesión")
+        print("8. Realizar plazo fijo")
+        print("9. Exportar historial a TXT")
+        print("10. Cerrar sesión")
         opcion = input("Seleccione una opción: ")
 
         if opcion == "1": 
@@ -456,8 +551,10 @@ def menu_usuario(usuario):
         elif opcion == "7":
             transferir_dinero(usuario, usuarios)
         elif opcion == "8":
-            exportar_historial_txt(usuario)
+            realizar_plazoFijo(usuario)
         elif opcion == "9":
+            exportar_historial_txt(usuario)
+        elif opcion == "10":
             print("Se cerro sesión correctamente. Hasta luego. ")
             registrar_evento(usuario, "Cierre de sesión", "El usuario cerró su sesión correctamente.")
             return False
