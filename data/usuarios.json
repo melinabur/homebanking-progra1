@@ -24,5 +24,41 @@
             }
         ],
         "intentos_fallidos": 3
+    },
+    {
+        "nombre": "micaela ",
+        "apellido": "alvarez",
+        "dni": "39641757",
+        "password": "Micaela123",
+        "pin": "2411",
+        "intentos_faliidos": 0,
+        "bloqueado": false,
+        "cuentas": [
+            {
+                "tipo": "Caja de Ahorro en Pesos",
+                "moneda": "ARS",
+                "saldo": 50000.0,
+                "cbu": "5438679122595507478708",
+                "alias": "nube.fuego.sopa"
+            },
+            {
+                "tipo": "Caja de Ahorro en Dólares",
+                "moneda": "USD",
+                "saldo": 0.0,
+                "cbu": "3188598837922355635338",
+                "alias": "cabra.mar.gato"
+            }
+        ],
+        "intentos_fallidos": 0,
+        "plazos_fijos": [
+            {
+                "moneda": "ARS",
+                "monto": 150000.0,
+                "dias": 30,
+                "tna": 0.37,
+                "monto_final": 154561.64,
+                "renovacion_auto": false
+            }
+        ]
     }
 ]

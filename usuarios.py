@@ -437,7 +437,7 @@ def realizar_plazoFijo(usuario):
         return
     
     #Consultamos al usuario por cuantos días desea realizar la inversión 
-    dias = input("Ingrese la cantidad de días que desea invertir (mayor a 30): ")
+    dias = input("Ingrese la cantidad de días que desea invertir (mayor o igual a 30): ")
 
     try: 
         dias = int(dias)

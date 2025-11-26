@@ -1,0 +1,32 @@
+[
+    {
+        "fecha": "2025-11-26 17:12:15",
+        "evento": "Alta de usuario",
+        "detalle": "Se registró un nuevo usuario en el sistema."
+    },
+    {
+        "fecha": "2025-11-26 17:12:27",
+        "evento": "Inicio de sesión",
+        "detalle": "El usuario inició sesión correctamente."
+    },
+    {
+        "fecha": "2025-11-26 17:12:36",
+        "evento": "Consulta de datos",
+        "detalle": "Consultó sus datos personales y bancarios."
+    },
+    {
+        "fecha": "2025-11-26 17:13:10",
+        "evento": "Depósito",
+        "detalle": "Depositó $200000.0 en ARS"
+    },
+    {
+        "fecha": "2025-11-26 17:14:48",
+        "evento": "Plazo fijo",
+        "detalle": "Plazo fijo en ARS por $150000.0"
+    },
+    {
+        "fecha": "2025-11-26 17:15:12",
+        "evento": "Cierre de sesión",
+        "detalle": "El usuario cerró su sesión correctamente."
+    }
+]
