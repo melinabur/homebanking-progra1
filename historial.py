@@ -67,3 +67,21 @@ def exportar_historial_txt(usuario):
             f.write(f"{evento['fecha']} | {evento['evento']} → {evento['detalle']}\n")
 
     print(f"✅ Historial exportado correctamente a {archivo_txt}")
+
+def comunicar_notificaciones(usuario):
+    """
+    Devuelve a cada usuario una notificacion interna.
+    """
+    dni = usuario["dni"]
+    ruta = f"historial_{dni}.txt"
+    notificaciones = []
+
+    try:
+        with open(ruta, "r", encoding="utf-8") as archivo:
+            for linea in archivo:
+                if "Transferencia recibida" in linea:
+                    notificaciones.append(linea.strip())
+    except FileNotFoundError:
+        return []
+
+    return notificaciones

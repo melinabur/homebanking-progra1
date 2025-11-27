@@ -37,7 +37,7 @@
             {
                 "tipo": "Caja de Ahorro en Pesos",
                 "moneda": "ARS",
-                "saldo": 50000.0,
+                "saldo": 48000.0,
                 "cbu": "5438679122595507478708",
                 "alias": "nube.fuego.sopa"
             },
@@ -62,6 +62,31 @@
         ],
         "historial_claves": [
             "Micaela123"
+        ]
+    },
+    {
+        "nombre": "Juan Manuel ",
+        "apellido": "Valle",
+        "dni": "35368483",
+        "password": "Consultor12",
+        "pin": "2025",
+        "intentos_fallidos": 0,
+        "bloqueado": false,
+        "cuentas": [
+            {
+                "tipo": "Caja de Ahorro en Pesos",
+                "moneda": "ARS",
+                "saldo": 12000.0,
+                "cbu": "4335317538590572828511",
+                "alias": "jvalle.mp"
+            },
+            {
+                "tipo": "Caja de Ahorro en Dólares",
+                "moneda": "USD",
+                "saldo": 0.0,
+                "cbu": "0771562363765744371642",
+                "alias": "perro.rueda.piedra"
+            }
         ]
     }
 ]

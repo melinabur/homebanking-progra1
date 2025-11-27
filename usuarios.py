@@ -12,6 +12,8 @@ from historial import registrar_evento
 
 from historial import exportar_historial_txt
 
+from historial import comunicar_notificaciones
+
 
 
 #Al abrir el programa lee el archivo json si existe y carga a los usuarios anteriores.
@@ -457,50 +459,67 @@ def ver_datos(usuario):
     # Opcional: registrar en historial que consultó sus datos
     registrar_evento(usuario, "Consulta de datos", "Consultó sus datos personales y bancarios.")
 
+def mostrar_notificaciones(usuario):
+    """
+    Muestra las notificaciones internas del usuario
+    obtenidas desde el historial.
+    """
+    print("\n--- Notificaciones recibidas ---")
+    notificaciones = comunicar_notificaciones(usuario)
 
+    if notificaciones == []:
+        print("No hay notificaciones nuevas para mostrar.")
+        return
+    
+    #Muestra al usuario cada notificacion recibida
+    for n in notificaciones:
+        print(f"- {n}")
 
 #MENU DEL USUARIO   
 
-def menu_usuario(usuario):
+def menu_usuario(usuario, usuarios):
     """
     Despliega el menú interno del usuario que permite consulta saldo y cerrar sesión.
     """
     while True: 
         print("\n--- Menú de Usuario ---")
         print("1. Consultar mis datos")
-        print("2. Consultar saldos de cuentas")
-        print("3. Cambiar alias")
-        print("4. Cambiar contraseña")
-        print("5. Realizar depósito")
-        print("6. Realizar extracción")
-        print("7. Transferir dinero")
-        print("8. Realizar plazo fijo")
-        print("9. Modificar PIN")
-        print("10. Exportar historial a TXT")
-        print("11. Cerrar sesión")
+        print("2. Consultar notificaciones")
+        print("3. Consultar saldos de cuentas")
+        print("4. Cambiar alias")
+        print("5. Cambiar contraseña")
+        print("6. Realizar depósito")
+        print("7. Realizar extracción")
+        print("8. Transferir dinero")
+        print("9. Realizar plazo fijo")
+        print("10. Modificar PIN")
+        print("11. Exportar historial a TXT")
+        print("12. Cerrar sesión")
         opcion = input("Seleccione una opción: ")
 
         if opcion == "1": 
             ver_datos(usuario)
         elif opcion == "2": 
+            mostrar_notificaciones(usuario)
+        elif opcion == "3": 
             consultar_saldo_cuentas(usuario)
-        elif opcion=="3":
+        elif opcion=="4":
             cambiar_alias(usuario) 
-        elif opcion == "4":
-            cambiar_contrasenia(usuario, usuarios)
         elif opcion == "5":
-            realizamos_deposito(usuario)
+            cambiar_contrasenia(usuario, usuarios)
         elif opcion == "6":
-            realizar_extraccion(usuario)
+            realizamos_deposito(usuario)
         elif opcion == "7":
-            transferir_dinero(usuario, usuarios)
+            realizar_extraccion(usuario)
         elif opcion == "8":
+            transferir_dinero(usuario, usuarios)
+        elif opcion == "9":
             realizar_plazoFijo(usuario)
-        elif opcion == "9": 
+        elif opcion == "10": 
             cambiar_pin(usuario, usuarios)
-        elif opcion == "10":
-            exportar_historial_txt(usuario)
         elif opcion == "11":
+            exportar_historial_txt(usuario)
+        elif opcion == "12":
             print("Se cerro sesión correctamente. Hasta luego. ")
             registrar_evento(usuario, "Cierre de sesión", "El usuario cerró su sesión correctamente.")
             return False
