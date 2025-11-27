@@ -81,7 +81,7 @@ def alta_Usuario():
             "dni": dni,
             "password": password,
             "pin": pin,
-            "intentos_faliidos": 0,
+            "intentos_fallidos": 0,
             "bloqueado": False,
             "cuentas": [
                 {
