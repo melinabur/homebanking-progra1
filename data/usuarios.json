@@ -88,5 +88,30 @@
                 "alias": "perro.rueda.piedra"
             }
         ]
+    },
+    {
+        "nombre": "Melina",
+        "apellido": "Burzell",
+        "dni": "12345678",
+        "password": "Hola2024",
+        "pin": "3671",
+        "intentos_fallidos": 0,
+        "bloqueado": false,
+        "cuentas": [
+            {
+                "tipo": "Caja de Ahorro en Pesos",
+                "moneda": "ARS",
+                "saldo": 0.0,
+                "cbu": "2348655594032385540296",
+                "alias": "melina.mp"
+            },
+            {
+                "tipo": "Caja de Ahorro en Dólares",
+                "moneda": "USD",
+                "saldo": 0.0,
+                "cbu": "6279603280316762484217",
+                "alias": "melina.usd"
+            }
+        ]
     }
 ]
