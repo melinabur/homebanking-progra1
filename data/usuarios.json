@@ -1,0 +1,52 @@
+[
+    {
+        "nombre": "Micaela",
+        "apellido": "Alvarez",
+        "dni": "39641757",
+        "password": "Progra2025",
+        "pin": "2411",
+        "intentos_fallidos": 0,
+        "bloqueado": false,
+        "cuentas": [
+            {
+                "tipo": "Caja de Ahorro en Pesos",
+                "moneda": "ARS",
+                "saldo": 0.0,
+                "cbu": "0501223559995569874199",
+                "alias": "mar.flor.puerta"
+            },
+            {
+                "tipo": "Caja de Ahorro en Dólares",
+                "moneda": "USD",
+                "saldo": 0.0,
+                "cbu": "0728005761007048760851",
+                "alias": "vino.silla.sol"
+            }
+        ]
+    },
+    {
+        "nombre": "Melina",
+        "apellido": "Burzell",
+        "dni": "44484523",
+        "password": "Hola2025",
+        "pin": "3671",
+        "intentos_fallidos": 0,
+        "bloqueado": false,
+        "cuentas": [
+            {
+                "tipo": "Caja de Ahorro en Pesos",
+                "moneda": "ARS",
+                "saldo": 0.0,
+                "cbu": "9176111342394787806848",
+                "alias": "melina.mp"
+            },
+            {
+                "tipo": "Caja de Ahorro en Dólares",
+                "moneda": "USD",
+                "saldo": 0.0,
+                "cbu": "4491150432420424240638",
+                "alias": "melina.usd"
+            }
+        ]
+    }
+]

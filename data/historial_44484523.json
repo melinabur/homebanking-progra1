@@ -1,0 +1,27 @@
+[
+    {
+        "fecha": "2025-11-27 18:54:45",
+        "evento": "Alta de usuario",
+        "detalle": "Se registró un nuevo usuario en el sistema."
+    },
+    {
+        "fecha": "2025-11-27 18:54:53",
+        "evento": "Inicio de sesión",
+        "detalle": "El usuario inició sesión correctamente."
+    },
+    {
+        "fecha": "2025-11-27 18:55:02",
+        "evento": "Cambio de alias",
+        "detalle": "Nuevo alias en ARS: melina.mp"
+    },
+    {
+        "fecha": "2025-11-27 18:55:09",
+        "evento": "Cambio de alias",
+        "detalle": "Nuevo alias en USD: melina.usd"
+    },
+    {
+        "fecha": "2025-11-27 18:55:16",
+        "evento": "Cierre de sesión",
+        "detalle": "El usuario cerró su sesión correctamente."
+    }
+]
