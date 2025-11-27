@@ -83,5 +83,50 @@
         "fecha": "2025-11-27 00:45:26",
         "evento": "Inicio de sesión",
         "detalle": "El usuario inició sesión correctamente."
+    },
+    {
+        "fecha": "2025-11-27 01:03:33",
+        "evento": "Cierre de sesión",
+        "detalle": "El usuario cerró su sesión correctamente."
+    },
+    {
+        "fecha": "2025-11-27 01:04:06",
+        "evento": "Transferencia recibida",
+        "detalle": "Recibió $1460.00 ARS de micaela  (nube.fuego.sopa)"
+    },
+    {
+        "fecha": "2025-11-27 01:04:33",
+        "evento": "Inicio de sesión",
+        "detalle": "El usuario inició sesión correctamente."
+    },
+    {
+        "fecha": "2025-11-27 11:03:03",
+        "evento": "Transferencia recibida",
+        "detalle": "Recibió $3250.00 ARS de micaela  (nube.fuego.sopa)"
+    },
+    {
+        "fecha": "2025-11-27 11:03:57",
+        "evento": "Inicio de sesión",
+        "detalle": "El usuario inició sesión correctamente."
+    },
+    {
+        "fecha": "2025-11-27 11:04:03",
+        "evento": "Consulta de datos",
+        "detalle": "Consultó sus datos personales y bancarios."
+    },
+    {
+        "fecha": "2025-11-27 11:11:04",
+        "evento": "Transferencia enviada",
+        "detalle": "Envió $2000.00 ARS a micaela  (nube.fuego.sopa)"
+    },
+    {
+        "fecha": "2025-11-27 11:11:08",
+        "evento": "Consulta de datos",
+        "detalle": "Consultó sus datos personales y bancarios."
+    },
+    {
+        "fecha": "2025-11-27 11:11:17",
+        "evento": "Cierre de sesión",
+        "detalle": "El usuario cerró su sesión correctamente."
     }
 ]

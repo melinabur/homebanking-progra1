@@ -88,5 +88,55 @@
         "fecha": "2025-11-27 00:45:15",
         "evento": "Cierre de sesión",
         "detalle": "El usuario cerró su sesión correctamente."
+    },
+    {
+        "fecha": "2025-11-27 01:03:46",
+        "evento": "Inicio de sesión",
+        "detalle": "El usuario inició sesión correctamente."
+    },
+    {
+        "fecha": "2025-11-27 01:04:06",
+        "evento": "Transferencia enviada",
+        "detalle": "Envió $1460.00 ARS a Juan Manuel  (jvalle.mp)"
+    },
+    {
+        "fecha": "2025-11-27 01:04:21",
+        "evento": "Cierre de sesión",
+        "detalle": "El usuario cerró su sesión correctamente."
+    },
+    {
+        "fecha": "2025-11-27 11:01:52",
+        "evento": "Inicio de sesión",
+        "detalle": "El usuario inició sesión correctamente."
+    },
+    {
+        "fecha": "2025-11-27 11:02:04",
+        "evento": "Depósito",
+        "detalle": "Depositó $15000.0 en ARS"
+    },
+    {
+        "fecha": "2025-11-27 11:03:03",
+        "evento": "Transferencia enviada",
+        "detalle": "Envió $3250.00 ARS a Juan Manuel  (jvalle.mp)"
+    },
+    {
+        "fecha": "2025-11-27 11:03:09",
+        "evento": "Consulta de datos",
+        "detalle": "Consultó sus datos personales y bancarios."
+    },
+    {
+        "fecha": "2025-11-27 11:03:19",
+        "evento": "Cierre de sesión",
+        "detalle": "El usuario cerró su sesión correctamente."
+    },
+    {
+        "fecha": "2025-11-27 11:11:04",
+        "evento": "Transferencia recibida",
+        "detalle": "Recibió $2000.00 ARS de Juan Manuel  (jvalle.mp)"
+    },
+    {
+        "fecha": "2025-11-27 11:11:42",
+        "evento": "Inicio de sesión",
+        "detalle": "El usuario inició sesión correctamente."
     }
 ]

@@ -37,7 +37,7 @@
             {
                 "tipo": "Caja de Ahorro en Pesos",
                 "moneda": "ARS",
-                "saldo": 41550.0,
+                "saldo": 51840.0,
                 "cbu": "5438679122595507478708",
                 "alias": "nube.fuego.sopa"
             },
@@ -76,7 +76,7 @@
             {
                 "tipo": "Caja de Ahorro en Pesos",
                 "moneda": "ARS",
-                "saldo": 12000.0,
+                "saldo": 10000.0,
                 "cbu": "4335317538590572828511",
                 "alias": "jvalle.mp"
             },

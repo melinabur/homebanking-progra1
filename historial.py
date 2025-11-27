@@ -79,6 +79,7 @@ def comunicar_notificaciones(usuario):
     if not os.path.exists(archivo_json):
         return []
     
+    historial = []
     with open(archivo_json, "r", encoding="utf-8") as f:
         try:
             historial = json.load(f)
