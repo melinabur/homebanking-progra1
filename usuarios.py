@@ -4,7 +4,7 @@ Contiene las funciones relacionadas con la gestión de usuarios.
 
 from utils import validar_caracteres, validar_dni, validar_numeros, dni_existe, generar_alias, validar_alias_formato, alias_existe, guardar_usuarios, cargar_usuarios, generar_cbu
 
-from seguridad import validar_password
+from seguridad import validar_password, cambiar_pin
 
 from transferencias import transferir_dinero
 
@@ -532,8 +532,9 @@ def menu_usuario(usuario):
         print("6. Realizar extracción")
         print("7. Transferir dinero")
         print("8. Realizar plazo fijo")
-        print("9. Exportar historial a TXT")
-        print("10. Cerrar sesión")
+        print("9. Modificar PIN")
+        print("10. Exportar historial a TXT")
+        print("11. Cerrar sesión")
         opcion = input("Seleccione una opción: ")
 
         if opcion == "1": 
@@ -552,9 +553,11 @@ def menu_usuario(usuario):
             transferir_dinero(usuario, usuarios)
         elif opcion == "8":
             realizar_plazoFijo(usuario)
-        elif opcion == "9":
-            exportar_historial_txt(usuario)
+        elif opcion == "9": 
+            cambiar_pin(usuario, usuarios)
         elif opcion == "10":
+            exportar_historial_txt(usuario)
+        elif opcion == "11":
             print("Se cerro sesión correctamente. Hasta luego. ")
             registrar_evento(usuario, "Cierre de sesión", "El usuario cerró su sesión correctamente.")
             return False
