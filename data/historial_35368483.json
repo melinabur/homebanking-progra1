@@ -38,5 +38,50 @@
         "fecha": "2025-11-27 00:29:01",
         "evento": "Cierre de sesión",
         "detalle": "El usuario cerró su sesión correctamente."
+    },
+    {
+        "fecha": "2025-11-27 00:31:25",
+        "evento": "Inicio de sesión",
+        "detalle": "El usuario inició sesión correctamente."
+    },
+    {
+        "fecha": "2025-11-27 00:32:10",
+        "evento": "Inicio de sesión",
+        "detalle": "El usuario inició sesión correctamente."
+    },
+    {
+        "fecha": "2025-11-27 00:38:09",
+        "evento": "Inicio de sesión",
+        "detalle": "El usuario inició sesión correctamente."
+    },
+    {
+        "fecha": "2025-11-27 00:38:37",
+        "evento": "Cierre de sesión",
+        "detalle": "El usuario cerró su sesión correctamente."
+    },
+    {
+        "fecha": "2025-11-27 00:39:12",
+        "evento": "Transferencia recibida",
+        "detalle": "Recibió $5000.00 ARS de micaela  (nube.fuego.sopa)"
+    },
+    {
+        "fecha": "2025-11-27 00:39:28",
+        "evento": "Inicio de sesión",
+        "detalle": "El usuario inició sesión correctamente."
+    },
+    {
+        "fecha": "2025-11-27 00:44:27",
+        "evento": "Cierre de sesión",
+        "detalle": "El usuario cerró su sesión correctamente."
+    },
+    {
+        "fecha": "2025-11-27 00:45:13",
+        "evento": "Transferencia recibida",
+        "detalle": "Recibió $1450.00 ARS de micaela  (nube.fuego.sopa)"
+    },
+    {
+        "fecha": "2025-11-27 00:45:26",
+        "evento": "Inicio de sesión",
+        "detalle": "El usuario inició sesión correctamente."
     }
 ]

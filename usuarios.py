@@ -467,13 +467,13 @@ def mostrar_notificaciones(usuario):
     print("\n--- Notificaciones recibidas ---")
     notificaciones = comunicar_notificaciones(usuario)
 
-    if notificaciones == []:
-        print("No hay notificaciones nuevas para mostrar.")
+    if not notificaciones:
+        print("No tenés nuevas notificaciones.")
         return
-    
-    #Muestra al usuario cada notificacion recibida
+
     for n in notificaciones:
         print(f"- {n}")
+
 
 #MENU DEL USUARIO   
 

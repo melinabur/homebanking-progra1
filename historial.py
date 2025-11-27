@@ -73,15 +73,26 @@ def comunicar_notificaciones(usuario):
     Devuelve a cada usuario una notificacion interna.
     """
     dni = usuario["dni"]
-    ruta = f"historial_{dni}.txt"
+    archivo_json = f"data/historial_{dni}.json"
+
+    #Nos fijamos si el archivo json existe
+    if not os.path.exists(archivo_json):
+        return []
+    
+    with open(archivo_json, "r", encoding="utf-8") as f:
+        try:
+            historial = json.load(f)
+        except json.JSONDecodeError:
+            return []
+    
     notificaciones = []
 
-    try:
-        with open(ruta, "r", encoding="utf-8") as archivo:
-            for linea in archivo:
-                if "Transferencia recibida" in linea:
-                    notificaciones.append(linea.strip())
-    except FileNotFoundError:
-        return []
+    #Filtramos las notificaciones de transferencia recibida
+    for evento in historial:
+        if evento.get("evento") == "Transferencia recibida":
+            notificaciones.append(
+                f"{evento['fecha']} - {evento['detalle']}"
+            )
 
     return notificaciones
+
