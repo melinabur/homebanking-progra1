@@ -29,7 +29,7 @@
         "nombre": "micaela ",
         "apellido": "alvarez",
         "dni": "39641757",
-        "password": "Micaela123",
+        "password": "Progra2025",
         "pin": "2411",
         "intentos_faliidos": 0,
         "bloqueado": false,
@@ -59,6 +59,9 @@
                 "monto_final": 154561.64,
                 "renovacion_auto": false
             }
+        ],
+        "historial_claves": [
+            "Micaela123"
         ]
     }
 ]

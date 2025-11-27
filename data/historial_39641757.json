@@ -28,5 +28,20 @@
         "fecha": "2025-11-26 17:15:12",
         "evento": "Cierre de sesión",
         "detalle": "El usuario cerró su sesión correctamente."
+    },
+    {
+        "fecha": "2025-11-26 23:40:15",
+        "evento": "Inicio de sesión",
+        "detalle": "El usuario inició sesión correctamente."
+    },
+    {
+        "fecha": "2025-11-26 23:40:48",
+        "evento": "Cambio de contraseña",
+        "detalle": "El usuario cambió su contraseña."
+    },
+    {
+        "fecha": "2025-11-26 23:41:00",
+        "evento": "Cierre de sesión",
+        "detalle": "El usuario cerró su sesión correctamente."
     }
 ]
