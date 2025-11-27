@@ -138,5 +138,25 @@
         "fecha": "2025-11-27 11:11:42",
         "evento": "Inicio de sesión",
         "detalle": "El usuario inició sesión correctamente."
+    },
+    {
+        "fecha": "2025-11-27 11:53:46",
+        "evento": "Inicio de sesión",
+        "detalle": "El usuario inició sesión correctamente."
+    },
+    {
+        "fecha": "2025-11-27 11:54:16",
+        "evento": "Transferencia enviada",
+        "detalle": "Envió $2300.00 ARS a Juan Manuel  (jvalle.mp)"
+    },
+    {
+        "fecha": "2025-11-27 11:54:25",
+        "evento": "Consulta de datos",
+        "detalle": "Consultó sus datos personales y bancarios."
+    },
+    {
+        "fecha": "2025-11-27 11:54:39",
+        "evento": "Cierre de sesión",
+        "detalle": "El usuario cerró su sesión correctamente."
     }
 ]
